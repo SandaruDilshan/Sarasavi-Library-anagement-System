@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sarasavi_Library_anagement_System.Pages.LandingPage"
+             >
+
+    <StackLayout>
+        <Label Text="Welcome to the Landing Page!" 
+               VerticalOptions="CenterAndExpand" 
+               HorizontalOptions="CenterAndExpand" />
+        <Button Text="Login" Clicked="OnLoginClicked" />
+        <Button Text="Sign Up" Clicked="OnSignUpClicked" />
+    </StackLayout>
+
+</ContentPage>
