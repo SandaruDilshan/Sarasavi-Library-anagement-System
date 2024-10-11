@@ -1,4 +1,6 @@
+using Sarasavi_Library_anagement_System.Pages;
 namespace Sarasavi_Library_anagement_System.Pages;
+
 
 public partial class LoginPage : ContentPage
 {
@@ -6,4 +8,11 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	private async void loginToHome(object sender, EventArgs e)
+	{
+        //await Navigation.PushAsync(new MainPage());
+        Application.Current.MainPage = new AppShell();
+
+    }
 }

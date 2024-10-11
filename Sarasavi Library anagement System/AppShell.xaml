@@ -8,16 +8,7 @@
     Shell.FlyoutBehavior="Locked"
     Shell.BackgroundColor="Navy"
     Shell.FlyoutBackgroundColor="Navy"
-    Title="Sarasavi Library">
-
-
-    <ShellContent
-     Title="Landing"
-     Icon="home.png"
-     ContentTemplate="{DataTemplate pages:LandingPage}"
-     Route="LandingPage"
-     Shell.TitleColor="White"
-     />
+    Title="Sarasavi Library"> 
 
     <ShellContent
         Title="Home"

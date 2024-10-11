@@ -69,7 +69,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Data\" />
 	  <Folder Include="Controls\" />
 	  <Folder Include="Pages\AdminPages\" />
 	  <Folder Include="ViewModel\" />
