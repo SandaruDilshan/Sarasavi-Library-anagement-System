@@ -2,11 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sarasavi_Library_anagement_System.Pages.SignUpPage"
-             Title="SignUpPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             >
+    
+    <ScrollView >
+        <VerticalStackLayout WidthRequest="600" Padding="30" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="User Registration" FontSize="25" HorizontalOptions="Center" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="User Name:" VerticalOptions="Center" WidthRequest="150"/>
+                <Entry x:Name="UserNameEntry" Placeholder="User Name" HorizontalOptions="FillAndExpand"  WidthRequest="600"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="NIC:" VerticalOptions="Center" WidthRequest="150"/>
+                <Entry x:Name="NicEntry" Placeholder="NIC" HorizontalOptions="FillAndExpand" WidthRequest="600"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Address:" VerticalOptions="Center" WidthRequest="150"/>
+                <Entry x:Name="AddressEntry" Placeholder="Address" HorizontalOptions="FillAndExpand" WidthRequest="600"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Gender:" VerticalOptions="Center" WidthRequest="150"/>
+                <HorizontalStackLayout Spacing="10">
+                    <CheckBox x:Name="MaleCheckBox"  /> <!-- CheckedChanged="OnGenderCheckedChanged"-->
+                    <Label Text="Male" VerticalOptions="Center" />
+                    <CheckBox x:Name="FemaleCheckBox"  /> <!--CheckedChanged="OnGenderCheckedChanged"--> 
+                    <Label Text="Female" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Password:" VerticalOptions="Center" WidthRequest="150"/>
+                <Entry x:Name="PasswordEntry" Placeholder="Enter Password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="600"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Confirm Password:" VerticalOptions="Center" WidthRequest="150"/>
+                <Entry x:Name="ConfirmPasswordEntry" Placeholder="Enter Confirm Password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="600"/>
+            </HorizontalStackLayout>
+
+            <Label Text="Already have an account ? Login." VerticalOptions="Center" HorizontalOptions="Center" TextColor="Navy">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="OnLoginLabelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+                <Button Text="Sign Up"  HorizontalOptions="Center" WidthRequest="540"/>
+            
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

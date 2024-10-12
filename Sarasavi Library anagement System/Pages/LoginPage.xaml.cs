@@ -15,4 +15,9 @@ public partial class LoginPage : ContentPage
         Application.Current.MainPage = new AppShell();
 
     }
+
+	private async void OnSignUpLabelTapped (object sender, EventArgs e)
+	{
+		await Navigation.PushAsync(new SignUpPage());
+	}
 }

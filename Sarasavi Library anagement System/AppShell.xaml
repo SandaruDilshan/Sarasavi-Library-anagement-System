@@ -36,7 +36,8 @@
             Source="logout.png"
             HeightRequest="20"
             WidthRequest="20"
-            Margin="0,0,250,25" />
+            Margin="0,0,250,25" 
+            />
 
     </Shell.FlyoutFooter>
 </Shell>
