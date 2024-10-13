@@ -11,8 +11,9 @@ namespace Sarasavi_Library_anagement_System.Data
         public String classification { get; set; }
         public String title { get; set; }
         public String author { get; set; }
-        public String status { get; set; } // Reference or Borrowable
-
+        public String status { get; set; } // Reference or Borrowabl
+        public String image { get; set; }
+        public string catagory { get; internal set; }
     }
 
  

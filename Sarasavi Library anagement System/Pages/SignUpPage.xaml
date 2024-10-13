@@ -1,56 +1,109 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Sarasavi_Library_anagement_System.Pages.SignUpPage"
+             x:Class="Sarasavi_Library_anagement_System.Pages.SignUpPage"                
              >
+    <Grid HorizontalOptions='Center'>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+       
+        <StackLayout Grid.Column="0" BackgroundColor="#000080" Padding="30" Spacing="20" Margin="20" WidthRequest="400">
+            <VerticalStackLayout>
+                <Image Source="book.png" HeightRequest="150" HorizontalOptions="Center" Margin="0,20,0,0"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="200" >
+                <Label Text="Sarasavi Library" 
+                       FontSize="24" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" />
+
+                <VerticalStackLayout Spacing="30">
+                    <Label Text="Don’t have an account ?" 
+                           TextColor="White" 
+                           HorizontalOptions="Center" />
+                    <Button Text="SIGN IN" 
+                            BackgroundColor="#000033" 
+                            TextColor="White" 
+                            CornerRadius="5" 
+                            WidthRequest="150"
+                            HorizontalOptions="Center" 
+                            Clicked="OnLoginLabelTapped"/>
+                </VerticalStackLayout>
+                
+            </VerticalStackLayout>
+
+        </StackLayout>
+
     
-    <ScrollView >
-        <VerticalStackLayout WidthRequest="600" Padding="30" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
-            <Label Text="User Registration" FontSize="25" HorizontalOptions="Center" />
+        <ScrollView Grid.Column="1" Padding="20" >
+            <VerticalStackLayout Spacing="20" HorizontalOptions="Start" WidthRequest="400">
+                <Label Text="Sign Up to Library" 
+                       FontSize="26" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center" />
 
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="User Name:" VerticalOptions="Center" WidthRequest="150"/>
-                <Entry x:Name="UserNameEntry" Placeholder="User Name" HorizontalOptions="FillAndExpand"  WidthRequest="600"/>
-            </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="15">
+                    <HorizontalStackLayout>
+                        <Label Text="Username:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="UserNameEntry" Placeholder="Enter username" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
 
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="NIC:" VerticalOptions="Center" WidthRequest="150"/>
-                <Entry x:Name="NicEntry" Placeholder="NIC" HorizontalOptions="FillAndExpand" WidthRequest="600"/>
-            </HorizontalStackLayout>
+                    <!--
+                    <HorizontalStackLayout>
+                        <Label Text="User Number:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="UserNumberEntry" Placeholder="Enter user number" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
+                    -->
+                    
+                    <HorizontalStackLayout>
+                        <Label Text="NIC:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="NicEntry" Placeholder="Enter NIC" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
 
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="Address:" VerticalOptions="Center" WidthRequest="150"/>
-                <Entry x:Name="AddressEntry" Placeholder="Address" HorizontalOptions="FillAndExpand" WidthRequest="600"/>
-            </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Text="Address:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="AddressEntry" Placeholder="Enter address" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
 
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="Gender:" VerticalOptions="Center" WidthRequest="150"/>
-                <HorizontalStackLayout Spacing="10">
-                    <CheckBox x:Name="MaleCheckBox"  /> <!-- CheckedChanged="OnGenderCheckedChanged"-->
-                    <Label Text="Male" VerticalOptions="Center" />
-                    <CheckBox x:Name="FemaleCheckBox"  /> <!--CheckedChanged="OnGenderCheckedChanged"--> 
-                    <Label Text="Female" VerticalOptions="Center" />
-                </HorizontalStackLayout>
-            </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Text="Gender:" VerticalOptions="Center" WidthRequest="120"/>
+                        <HorizontalStackLayout Spacing="5">
+                            <CheckBox x:Name="MaleCheckBox"/>
+                            <Label Text="Male" VerticalOptions="Center"/>
+                            <CheckBox x:Name="FemaleCheckBox"/>
+                            <Label Text="Female" VerticalOptions="Center"/>
+                            <CheckBox x:Name="OtherCheckBox"/>
+                            <Label Text="Other" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
 
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="Password:" VerticalOptions="Center" WidthRequest="150"/>
-                <Entry x:Name="PasswordEntry" Placeholder="Enter Password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="600"/>
-            </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Text="Password:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="PasswordEntry" Placeholder="Enter password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
 
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="Confirm Password:" VerticalOptions="Center" WidthRequest="150"/>
-                <Entry x:Name="ConfirmPasswordEntry" Placeholder="Enter Confirm Password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="600"/>
-            </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Text="Confirm Password:" VerticalOptions="Center" WidthRequest="150"/>
+                        <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
 
-            <Label Text="Already have an account ? Login." VerticalOptions="Center" HorizontalOptions="Center" TextColor="Navy">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer  Tapped="OnLoginLabelTapped" />
-                </Label.GestureRecognizers>
-            </Label>
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="ShowPasswordCheckBox" VerticalOptions="Center"/>
+                        <Label Text="Show password" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
 
-                <Button Text="Sign Up"  HorizontalOptions="Center" WidthRequest="540"/>
-            
-        </VerticalStackLayout>
-    </ScrollView>
+                    <Button Text="SIGN UP" 
+                            BackgroundColor="#000080" 
+                            TextColor="White" 
+                            CornerRadius="5" 
+                            WidthRequest="200" 
+                            HorizontalOptions="Center"
+                            Clicked="SignUpClick"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

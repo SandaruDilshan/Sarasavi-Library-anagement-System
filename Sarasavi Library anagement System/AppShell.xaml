@@ -8,7 +8,7 @@
     Shell.FlyoutBehavior="Locked"
     Shell.BackgroundColor="Navy"
     Shell.FlyoutBackgroundColor="Navy"
-    Title="Sarasavi Library"> 
+    Title="Sarasavi Library">
 
     <ShellContent
         Title="Home"

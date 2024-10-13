@@ -5,11 +5,34 @@
              >
 
     <StackLayout>
-        <Label Text="Welcome to the Landing Page!" 
-               VerticalOptions="CenterAndExpand" 
-               HorizontalOptions="CenterAndExpand" />
-        <Button Text="Login" Clicked="OnLoginClicked" />
-        <Button Text="Sign Up" Clicked="OnSignUpClicked" />
+        <HorizontalStackLayout HorizontalOptions="Center" >
+            <VerticalStackLayout Spacing="20" >
+                <Label Text="Sarasavi Library Management System" 
+                       FontSize="34"      
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+
+                <VerticalStackLayout>
+                    <Label Text="Explore a wide range of children's books at Sarasavi. "/>
+                    <Label Text="From enchanting fairy tales to educational resources,"></Label>
+                    <Label Text="find the perfect book to inspire young minds."></Label>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text=""></Label>
+                </VerticalStackLayout>
+
+                <HorizontalStackLayout Spacing="20">
+                    <Button Text="Sign Up" Clicked="OnSignUpClicked" WidthRequest="150"/>
+                    <Button Text="Login" Clicked="OnLoginClicked" WidthRequest="150"/>
+                </HorizontalStackLayout>
+                
+                
+            </VerticalStackLayout>
+
+            <Image Source="bdbook.webp" WidthRequest="500" />
+            
+        </HorizontalStackLayout>
     </StackLayout>
 
 </ContentPage>

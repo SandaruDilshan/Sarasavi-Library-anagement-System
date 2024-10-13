@@ -3,31 +3,78 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sarasavi_Library_anagement_System.Pages.LoginPage"
              >
-    
-    <VerticalStackLayout HorizontalOptions="Center" Spacing="40" >
-        
-        <Label Text="User Registration" FontSize="25" HorizontalOptions="Center" Margin="0,50,0,0" />
 
-        <VerticalStackLayout Margin="0,40,0,0" Spacing="30">
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="User Name :" VerticalOptions="Center" WidthRequest="150"/>
-                <Entry x:Name="UserNameEntry" Placeholder="User Name" HorizontalOptions="FillAndExpand"  WidthRequest="400"/>
-            </HorizontalStackLayout>
+    <Grid HorizontalOptions='Center'>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
 
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="Password :" VerticalOptions="Center" WidthRequest="150"/>
-                <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand"  WidthRequest="400"/>
-            </HorizontalStackLayout>
 
-        </VerticalStackLayout>
+        <StackLayout Grid.Column="0" BackgroundColor="#000080" Padding="30" Spacing="20" Margin="20" WidthRequest="400">
+            <VerticalStackLayout>
+                <Image Source="book.png" HeightRequest="150" HorizontalOptions="Center" Margin="0,20,0,0"/>
+            </VerticalStackLayout>
 
-        <Label Text="Already haven't an account ? Sign Up." VerticalOptions="Center" HorizontalOptions="Center" TextColor="Navy">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer  Tapped="OnSignUpLabelTapped" />
-            </Label.GestureRecognizers>
-        </Label>
+            <VerticalStackLayout Spacing="200" >
+                <Label Text="Sarasavi Library" 
+                   FontSize="24" 
+                   TextColor="White" 
+                   HorizontalOptions="Center" />
 
-        <Button Text="Login"  HorizontalOptions="Center" WidthRequest="540" Clicked="loginToHome"/>
+                <VerticalStackLayout Spacing="30">
+                    <Label Text="Don’t have an account ?" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" />
+                    <Button Text="SIGN UP" 
+                        BackgroundColor="#000033" 
+                        TextColor="White" 
+                        CornerRadius="5" 
+                        WidthRequest="150"
+                        HorizontalOptions="Center" 
+                        Clicked="OnSignInLabelTapped"/>
+                </VerticalStackLayout>
 
-        </VerticalStackLayout>
+            </VerticalStackLayout>
+
+        </StackLayout>
+
+
+        <ScrollView Grid.Column="1" Padding="20"  >
+            <VerticalStackLayout Spacing="50" HorizontalOptions="Start" WidthRequest="400">
+                <Label Text="Sign Up to Library" 
+                   FontSize="26" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+
+                <VerticalStackLayout Spacing="15">
+                    <HorizontalStackLayout>
+                        <Label Text="Username:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="UserNameEntry" Placeholder="Enter username" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
+
+                   
+
+                    <HorizontalStackLayout>
+                        <Label Text="Password:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="PasswordEntry" Placeholder="Enter password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
+
+
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="ShowPasswordCheckBox" VerticalOptions="Center"/>
+                        <Label Text="Show password" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <Button Text="SIGN IN" 
+                        BackgroundColor="#000080" 
+                        TextColor="White" 
+                        CornerRadius="5" 
+                        WidthRequest="200" 
+                        HorizontalOptions="Center"
+                        Clicked="loginToHome"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

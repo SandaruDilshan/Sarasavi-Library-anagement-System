@@ -16,7 +16,7 @@ public partial class LoginPage : ContentPage
 
     }
 
-	private async void OnSignUpLabelTapped (object sender, EventArgs e)
+	private async void OnSignInLabelTapped(object sender, EventArgs e)
 	{
 		await Navigation.PushAsync(new SignUpPage());
 	}

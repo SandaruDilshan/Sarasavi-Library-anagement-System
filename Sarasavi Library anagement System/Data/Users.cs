@@ -11,6 +11,7 @@ namespace Sarasavi_Library_anagement_System.Data
         public String gender { get; set; }
         public  String nic { get; set; }
         public String address { get; set; }
+        public String password { get; set; }
 
     }
 
