@@ -11,11 +11,14 @@ public partial class SignUpPage : ContentPage
 	{
         InitializeComponent();
 		_database = new Database();
-        _database.Initialize();
+    }
+ 
+    private async void InitializeDatabaseAsync()
+    {
+        await _database.Initialize();
     }
 
-
-	private async void SignUpClick(object sender, EventArgs e)
+    private async void SignUpClick(object sender, EventArgs e)
 	{
 
 		int checkbox = 0;
@@ -66,12 +69,10 @@ public partial class SignUpPage : ContentPage
             return;
         }
 
+
         //new user number
         string newUserNumber = await _database.GenerateUserNumber();
-        string user_name = UserNameEntry.Text;
-        string nic = NicEntry.Text;
-        string address = AddressEntry.Text;
-		string password = PasswordEntry.Text;
+        string member = IsMemberCheckBox.IsChecked ? "Member" : "Visitor";
 
         var newUser = new Users
         {
@@ -81,6 +82,7 @@ public partial class SignUpPage : ContentPage
             nic = NicEntry.Text,
             address = AddressEntry.Text,
             password = PasswordEntry.Text,
+            userType = member,
         };
 
         await _database.SaveUserDetails(newUser);

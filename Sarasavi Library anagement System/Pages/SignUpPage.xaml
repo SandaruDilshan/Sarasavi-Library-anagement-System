@@ -91,8 +91,8 @@
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout>
-                        <CheckBox x:Name="ShowPasswordCheckBox" VerticalOptions="Center"/>
-                        <Label Text="Show password" VerticalOptions="Center"/>
+                        <Label Text="Do you want to become a member ?" VerticalOptions="Center"/>
+                        <CheckBox x:Name="IsMemberCheckBox" VerticalOptions="Center"/>
                     </HorizontalStackLayout>
 
                     <Button Text="SIGN UP" 

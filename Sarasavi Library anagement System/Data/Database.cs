@@ -16,7 +16,6 @@ namespace Sarasavi_Library_anagement_System.Data
             _conn = new SQLiteAsyncConnection(dbpath,
                     SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache);
         }
-
         public async Task Initialize()
         {
             try
@@ -36,7 +35,22 @@ namespace Sarasavi_Library_anagement_System.Data
         }
 
 
-        //genarate user number
+        public async Task GetBookData()
+        {
+            var firstcategory = await _conn.Table<BooksCatagory>().FirstOrDefaultAsync();
+
+            if(firstcategory != null)
+            {
+                return;
+            }
+
+            var categories = BookCategqryData.Get();
+
+            await _conn.InsertAllAsync(categories);
+        }
+
+
+        //genarate user number for signup
         public async Task<string> GenerateUserNumber()
         {
             var lastUser = await _conn.Table<Users>()
@@ -51,6 +65,19 @@ namespace Sarasavi_Library_anagement_System.Data
             }
 
             return nextNumber.ToString("D5"); // Formatting usre number for 5 digits
+        }
+
+        public async Task<List<BooksCatagory>> GetCategary()
+        {
+            return await _conn.Table<BooksCatagory>().ToListAsync();
+        }
+
+        // retrieve username and password for login
+        public async Task <Users> GetUsernameAndPassword(string username, string password)
+        {
+            return await _conn.Table<Users>()
+               .Where(u=>u.user_name == username && u.password == password)
+               .FirstOrDefaultAsync();
         }
 
         public Task<int> SaveUserDetails(Users user)

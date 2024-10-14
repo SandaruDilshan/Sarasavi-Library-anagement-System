@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sarasavi_Library_anagement_System.Data
 {
-    class BooksCatagory
+   public class BooksCatagory
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }

@@ -56,8 +56,38 @@
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+	  <None Remove="Resources\Images\Adventure.jpg" />
+	  <None Remove="Resources\Images\ArtPhotography.jpg" />
 	  <None Remove="Resources\Images\bdbook.webp" />
+	  <None Remove="Resources\Images\biography.jpg" />
 	  <None Remove="Resources\Images\bookbg.jpg" />
+	  <None Remove="Resources\Images\Business.webp" />
+	  <None Remove="Resources\Images\ComicsGraphicNovels.png" />
+	  <None Remove="Resources\Images\Cookbooks.webp" />
+	  <None Remove="Resources\Images\Drama.jpg" />
+	  <None Remove="Resources\Images\Education.webp" />
+	  <None Remove="Resources\Images\Fantasy.webp" />
+	  <None Remove="Resources\Images\fiction.jpeg" />
+	  <None Remove="Resources\Images\HealthWellness.jpeg" />
+	  <None Remove="Resources\Images\history.jpg" />
+	  <None Remove="Resources\Images\Horror.webp" />
+	  <None Remove="Resources\Images\Music.jpg" />
+	  <None Remove="Resources\Images\Mystery.jpg" />
+	  <None Remove="Resources\Images\Parenting.jpeg" />
+	  <None Remove="Resources\Images\Philosophy.jpg" />
+	  <None Remove="Resources\Images\Poetry.jpg" />
+	  <None Remove="Resources\Images\Politics.jpeg" />
+	  <None Remove="Resources\Images\Psychology.jpg" />
+	  <None Remove="Resources\Images\Religion.jpeg" />
+	  <None Remove="Resources\Images\Romance.png" />
+	  <None Remove="Resources\Images\science.jpg" />
+	  <None Remove="Resources\Images\ScienceFiction.png" />
+	  <None Remove="Resources\Images\selfhelp.png" />
+	  <None Remove="Resources\Images\Sports.jpg" />
+	  <None Remove="Resources\Images\technology.jpg" />
+	  <None Remove="Resources\Images\Thriller.jpeg" />
+	  <None Remove="Resources\Images\Travel.jpg" />
+	  <None Remove="Resources\Images\TravelGuides.webp" />
 	</ItemGroup>
 
 	<ItemGroup>

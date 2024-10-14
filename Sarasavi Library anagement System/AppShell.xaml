@@ -8,28 +8,52 @@
     Shell.FlyoutBehavior="Locked"
     Shell.BackgroundColor="Navy"
     Shell.FlyoutBackgroundColor="Navy"
-    Title="Sarasavi Library">
+     Shell.ForegroundColor="White"
+>
+
+    <Shell.FlyoutHeader>
+        <StackLayout Margin="0,20,0,40" HorizontalOptions="Center" >
+            <Label Text="Sarasavi Library" FontSize="22" TextColor="White" FontAttributes="Bold"/>
+
+            <Image 
+                 Source="book.png"
+                 HeightRequest="150"
+                 WidthRequest="150"
+                Margin="0,30,0,0"
+             />
+
+            <Label Text="WELCOME TO THE LIBRARY" TextColor="White" FontSize="14" FontAttributes="Bold" Margin="0,20,0,20"/>
+            <Label Text="USER NUMBER: 00001" TextColor="White" HorizontalOptions="Center"/>
+
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
 
     <ShellContent
         Title="Home"
-        Icon="home.png"
+        Icon="home.png"    
         ContentTemplate="{DataTemplate pages:MainPage}"
         Route="MainPage"
         Shell.TitleColor="White"
+        Shell.ForegroundColor="White"
         />
 
     <ShellContent
-        Title="Notifications"
+        Shell.ForegroundColor="White"
         Shell.TitleColor="White"
-        Icon="alarm.png"
+        Title="Notifications"
+        Icon="bell.png"
         ContentTemplate="{DataTemplate pages:UserNotification}"
         Route="UserNotification" />
 
     <ShellContent
+        Icon="booking.png"
         Title="Reservation"
         Shell.TitleColor="White"
         ContentTemplate="{DataTemplate pages:UserReservationPage}"
         Route="UserxReservationPage" />
+
+
 
     <Shell.FlyoutFooter>
         <Image 
