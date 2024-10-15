@@ -1,46 +1,158 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sarasavi_Library_anagement_System.Pages.MainPage">
 
-    <CollectionView x:Name="collectionView" 
+    <Grid>
+        <!--Display all catagory-->
+        <Grid IsVisible="{Binding IsCategoryVisible}">
+        
+            <!-- Define rows or columns as needed -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0,0,0,10" Spacing="10">
+
+                <Label Text="All :" 
+                       FontSize="14" 
+                       FontAttributes="Bold"
+                       Padding="5"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                        />
+                <Entry Placeholder="Search categary" 
+                       HorizontalOptions="Center"
+                       WidthRequest="300"
+                       FontSize="14"
+                       TextChanged="SearchFunction" />
+
+                <Image Source="search.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="collectionView" 
+                            Grid.Row="1"
+                            SelectionMode="Single" 
+                            EmptyView="No category available"
+                            SelectionChanged="OnCatagorySelection"
+                           >
+
+                <CollectionView.Header>
+                    <StackLayout Padding="10" BackgroundColor="LightGray">
+                        <Label Text="Book Categories" 
+                               FontSize="24" 
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                </CollectionView.Header>
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="4" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".9*" />
+                                    <ColumnDefinition Width=".1*" />
+                                </Grid.ColumnDefinitions>
+                                <VerticalStackLayout>
+                                    <Image Source="{Binding image}" Grid.Column="0" HeightRequest="150"/>
+                                    <HorizontalStackLayout Grid.Column="0" Padding="5" VerticalOptions="Center">
+                                        <Label Text="{Binding catagory}" VerticalOptions="Center" HorizontalOptions="Center" Margin="60,0,0,0" FontAttributes="Bold"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!--Selected categary books-->
+        <Grid IsVisible="{Binding IsBookVisible}">
+
+            <!-- Define rows or columns as needed -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0,0,0,10" Spacing="10">
+
+                <Label Text="All :" 
+               FontSize="14" 
+               FontAttributes="Bold"
+               Padding="5"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+                />
+                <Entry Placeholder="Search books" 
+               HorizontalOptions="Center"
+               WidthRequest="300"
+               FontSize="14"
+               TextChanged="SearchBooksFunction" />
+
+                <Image Source="search.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="BooksCollectionView" 
+                    Grid.Row="1"
                     SelectionMode="Single" 
                     EmptyView="No category available"
-                    SelectionChanged="OnCatagorySelection">
-        
-        <CollectionView.Header >
-            <StackLayout Padding="10" BackgroundColor="LightGray">
-            <Label Text="Book Categories" 
+                    SelectionChanged="OnCatagorySelection"
+                   >
+
+                <CollectionView.Header>
+                    <StackLayout Padding="10" BackgroundColor="LightGray">
+                        <Label Text="Book Categories" 
                        FontSize="24" 
                        FontAttributes="Bold"
                        HorizontalOptions="Center" 
                        VerticalOptions="Center" />
-            </StackLayout>
-        </CollectionView.Header>
+                    </StackLayout>
+                </CollectionView.Header>
 
-        
-        <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical" Span="4" />
-        </CollectionView.ItemsLayout>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="4" />
+                </CollectionView.ItemsLayout>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame Margin="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=".9*" />
-                            <ColumnDefinition Width=".1*" />
-                        </Grid.ColumnDefinitions>
-                        <VerticalStackLayout>
-                            <Image Source="{Binding image}" Grid.Column="0" HeightRequest="150"/>
-                            <HorizontalStackLayout Grid.Column="0" Padding="5" VerticalOptions="Center">
-                                <Label Text="{Binding catagory}" VerticalOptions="Center" HorizontalOptions="Center" Margin="60,0,0,0" FontAttributes="Bold"/>
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
-                    </Grid>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".9*" />
+                                    <ColumnDefinition Width=".1*" />
+                                </Grid.ColumnDefinitions>
+                                <VerticalStackLayout>
+                                    <Image Source="{Binding image}" Grid.Column="0" HeightRequest="150"/>
+                                    <HorizontalStackLayout Grid.Column="0" Padding="5" VerticalOptions="Center">
+                                        <Label Text="{Binding isbn}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
+                                        <Label Text="{Binding title}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
+                                        <Label Text="{Binding author}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
+                                        <Label Text="{Binding status}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
+                                    </HorizontalStackLayout>
+                                    <VerticalStackLayout>
+                                        <Button Text="Read" />
+                                        <Button Text="Borrow" />
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </Grid>
+    </Grid>
 
 </ContentPage>
+
+    

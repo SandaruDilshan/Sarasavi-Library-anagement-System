@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Sarasavi_Library_anagement_System.Pages.AdminPages.AdminShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Sarasavi_Library_anagement_System"
+    xmlns:adminpages="clr-namespace:Sarasavi_Library_anagement_System.Pages.AdminPages"
+    Shell.FlyoutBehavior="Locked"
+    Shell.BackgroundColor="Navy"
+    Shell.FlyoutBackgroundColor="Navy"
+    Shell.ForegroundColor="White" 
+    Shell.FlyoutWidth="230">
+
+
+    <Shell.FlyoutHeader>
+        <StackLayout Margin="0,20,0,40" HorizontalOptions="Center" >
+            <Label Text="Sarasavi Library" FontSize="22" TextColor="White" FontAttributes="Bold"/>
+
+            <Image 
+             Source="book.png"
+             HeightRequest="150"
+             WidthRequest="150"
+            Margin="0,30,0,0"
+         />
+
+            <Label Text="WELCOME, ADMIN" TextColor="White" FontSize="12" FontAttributes="Bold" Margin="0,20,0,20" HorizontalOptions="Center"/>
+
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <ShellContent
+        Title="Dashboard"
+        Icon="dashboard.png"    
+        ContentTemplate="{DataTemplate adminpages:Dashboard}"
+        Route="Dashboard"
+        Shell.TitleColor="White"
+        Shell.ForegroundColor="LightBlue"
+        />
+
+    <FlyoutItem Title="Books" Icon="bookadmin.png">
+        <ShellContent
+            Title="All Books"
+            ContentTemplate="{DataTemplate adminpages:Books}"
+            Route="Books"
+            Shell.TitleColor="White"
+            Shell.ForegroundColor="LightBlue" />
+
+        <ShellContent
+            Title="Add Books"
+            ContentTemplate="{DataTemplate adminpages:Add_new_books}"
+            Route="Books/AddBook"
+            Shell.TitleColor="White"
+            Shell.ForegroundColor="White" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Users" Icon="user.png">
+        <ShellContent
+           Title="Users"   
+           ContentTemplate="{DataTemplate adminpages:Users}"
+           Route="Users"
+           Shell.TitleColor="White"
+           Shell.ForegroundColor="White"
+           />
+
+        <ShellContent
+           Title="Add   Users"   
+           ContentTemplate="{DataTemplate adminpages:Add_Users}"
+           Route="Users/Add Users"
+           Shell.TitleColor="White"
+           Shell.ForegroundColor="White"
+           />
+    </FlyoutItem>
+     
+     <ShellContent
+            Title="Return"
+            Icon="returnbox.png"    
+            ContentTemplate="{DataTemplate adminpages:Return}"
+            Route="Return"
+            Shell.TitleColor="White"
+            Shell.ForegroundColor="White"
+            />
+
+    <FlyoutItem Title="Reservation" Icon="bookingb.png">
+        <ShellContent
+        Title="Reservetions"
+        ContentTemplate="{DataTemplate adminpages:Reservations}"
+        Route="Reservations"
+        Shell.TitleColor="White"
+        Shell.ForegroundColor="White"
+        />
+
+        <ShellContent
+        Title="Pending Reservations"  
+        ContentTemplate="{DataTemplate adminpages:Pending_Reservations}"
+        Route="Reservations/Pending_Reservation"
+        Shell.TitleColor="White"
+        Shell.ForegroundColor="White"
+        />
+    </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <Image 
+         Source="logout.png"
+         HeightRequest="20"
+         WidthRequest="20"
+         Margin="0,0,150,25" 
+         />
+
+    </Shell.FlyoutFooter>
+
+</Shell>

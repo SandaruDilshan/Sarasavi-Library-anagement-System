@@ -34,7 +34,7 @@ namespace Sarasavi_Library_anagement_System.Data
             }
         }
 
-
+        //Get books categaries from BookCategqryData and send to the database
         public async Task GetBookData()
         {
             var firstcategory = await _conn.Table<BooksCatagory>().FirstOrDefaultAsync();
@@ -47,6 +47,39 @@ namespace Sarasavi_Library_anagement_System.Data
             var categories = BookCategqryData.Get();
 
             await _conn.InsertAllAsync(categories);
+        }
+
+        //get books data from BooksData and sed it to database
+        public async Task SendBooksData()
+        {
+            var firstBook = await _conn.Table<Books>().FirstOrDefaultAsync();
+
+            if(firstBook != null)
+            {
+                return;
+            }
+            var books = BooksData.GetBooks();
+            await _conn.InsertAllAsync(books);
+        }
+
+        //Retrieve books from database 
+        public async Task<List<Books>> GetBooksByCategory(string category)
+        {            
+                // Retrieve books by category
+                var books = await _conn.Table<Books>()
+                                       .Where(b => b.catagory == category)
+                                       .ToListAsync();
+            return books;
+
+            
+        }
+
+
+
+        //Retreive books category from database
+        public async Task<List<BooksCatagory>> GetCategary()
+        {
+            return await _conn.Table<BooksCatagory>().ToListAsync();
         }
 
 
@@ -67,10 +100,6 @@ namespace Sarasavi_Library_anagement_System.Data
             return nextNumber.ToString("D5"); // Formatting usre number for 5 digits
         }
 
-        public async Task<List<BooksCatagory>> GetCategary()
-        {
-            return await _conn.Table<BooksCatagory>().ToListAsync();
-        }
 
         // retrieve username and password for login
         public async Task <Users> GetUsernameAndPassword(string username, string password)

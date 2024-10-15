@@ -60,10 +60,14 @@
 	  <None Remove="Resources\Images\ArtPhotography.jpg" />
 	  <None Remove="Resources\Images\bdbook.webp" />
 	  <None Remove="Resources\Images\biography.jpg" />
+	  <None Remove="Resources\Images\book.png" />
+	  <None Remove="Resources\Images\bookadmin.png" />
 	  <None Remove="Resources\Images\bookbg.jpg" />
+	  <None Remove="Resources\Images\bookingb.png" />
 	  <None Remove="Resources\Images\Business.webp" />
 	  <None Remove="Resources\Images\ComicsGraphicNovels.png" />
 	  <None Remove="Resources\Images\Cookbooks.webp" />
+	  <None Remove="Resources\Images\dashboard.png" />
 	  <None Remove="Resources\Images\Drama.jpg" />
 	  <None Remove="Resources\Images\Education.webp" />
 	  <None Remove="Resources\Images\Fantasy.webp" />
@@ -79,6 +83,7 @@
 	  <None Remove="Resources\Images\Politics.jpeg" />
 	  <None Remove="Resources\Images\Psychology.jpg" />
 	  <None Remove="Resources\Images\Religion.jpeg" />
+	  <None Remove="Resources\Images\returnbox.png" />
 	  <None Remove="Resources\Images\Romance.png" />
 	  <None Remove="Resources\Images\science.jpg" />
 	  <None Remove="Resources\Images\ScienceFiction.png" />
@@ -88,6 +93,7 @@
 	  <None Remove="Resources\Images\Thriller.jpeg" />
 	  <None Remove="Resources\Images\Travel.jpg" />
 	  <None Remove="Resources\Images\TravelGuides.webp" />
+	  <None Remove="Resources\Images\user.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -102,12 +108,38 @@
 
 	<ItemGroup>
 	  <Folder Include="Controls\" />
-	  <Folder Include="Pages\AdminPages\" />
 	  <Folder Include="ViewModel\" />
 	  <Folder Include="Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\AdminPages\Add new books.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminPages\Add Users.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminPages\Books.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminPages\AdminShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminPages\Dashboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminPages\Pending Reservations.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminPages\Reservations.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminPages\Return.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminPages\Users.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\LandingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

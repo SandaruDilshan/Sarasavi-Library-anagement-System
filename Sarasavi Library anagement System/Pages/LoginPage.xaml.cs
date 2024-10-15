@@ -1,5 +1,6 @@
 using Sarasavi_Library_anagement_System.Data;
 using Sarasavi_Library_anagement_System.Pages;
+using Sarasavi_Library_anagement_System.Pages.AdminPages;
 namespace Sarasavi_Library_anagement_System.Pages;
 
 
@@ -34,8 +35,9 @@ public partial class LoginPage : ContentPage
         if (user != null)
 		{
 			await DisplayAlert("Success", "Login successfull", "OK");
-			Application.Current.MainPage = new AppShell();
-		}
+			//Application.Current.MainPage = new AppShell();
+			Application.Current.MainPage = new AdminShell();
+        }
         else
         {
             await DisplayAlert("Error", "Invalid username or password", "OK");
