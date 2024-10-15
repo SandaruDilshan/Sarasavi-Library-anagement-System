@@ -2,11 +2,87 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sarasavi_Library_anagement_System.Pages.AdminPages.Add_new_books"
-             Title="Add_new_books">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Add_new_books"
+             Background="WhiteSmoke">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        
+        <ScrollView Grid.Column="0" Grid.Row="0" Padding="30" >
+            <VerticalStackLayout Spacing="20" HorizontalOptions="Start" >
+                <Label Text="Add Books" 
+                   FontSize="26" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+
+                <VerticalStackLayout Spacing="15">
+                    <HorizontalStackLayout>
+                        <Label Text="Title of thr Book:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="title" Placeholder="Enter title" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
+
+              
+
+                    <HorizontalStackLayout>
+                        <Label Text="ISBN:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="isbn" Placeholder="Enter ISBN number" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Publisher:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="publisher" Placeholder="Publisher name" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Category:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="category" Placeholder="Category"  HorizontalOptions="FillAndExpand" WidthRequest="300" />
+
+                    </HorizontalStackLayout>
+                    
+                    <HorizontalStackLayout>
+                        <Label Text="Number of Coppies:" VerticalOptions="Center" WidthRequest="150"/>
+                        <Entry x:Name="copies" Placeholder="Copies" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Password:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="PasswordEntry" Placeholder="Enter password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Status:" VerticalOptions="Center" WidthRequest="120"/>
+                        <HorizontalStackLayout Spacing="5">
+                            <Label Text="Borrowable" VerticalOptions="Center"/>
+                            <CheckBox x:Name="borrowablecheck"/>
+                            <Label Text="Reference" VerticalOptions="Center"/>
+                            <CheckBox x:Name="referencecheck"/>
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+                    
+                    <Button Text="Add" 
+                        BackgroundColor="#000080" 
+                        TextColor="White" 
+                        CornerRadius="5" 
+                        WidthRequest="200" 
+                        HorizontalOptions="Center"
+                        />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+            
+        </ScrollView>
+        <VerticalStackLayout Padding="10" Grid.Row="0" Grid.Column="1" Spacing="20">
+            <Button Text="Add an Image" WidthRequest="200"  HorizontalOptions="Start" Clicked="OnSelectImageButtonClicked" />
+            <Image x:Name="SelectedImage" HeightRequest="400" Background="White" />
+        </VerticalStackLayout>
+
+    </Grid>
+
 </ContentPage>
