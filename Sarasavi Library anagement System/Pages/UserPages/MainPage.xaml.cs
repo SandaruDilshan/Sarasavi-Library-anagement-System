@@ -5,129 +5,130 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    namespace Sarasavi_Library_anagement_System.Pages
+namespace Sarasavi_Library_anagement_System.Pages
+{
+    public partial class MainPage : ContentPage
     {
-        public partial class MainPage : ContentPage
+        private readonly Database _database;
+
+        //BooksCatagory booksCatagory;
+
+        public ObservableCollection<BooksCatagory> BookCategories { get; set; }
+        public ObservableCollection<Books> Books { get; set; }
+
+        public bool IsCategoryVisible { get; set; } = true;
+        public bool IsBookVisible { get; set; } = false;
+
+
+        public MainPage()
         {
-            private readonly Database _database;
-        
-            //BooksCatagory booksCatagory;
+            InitializeComponent();
+            _database = new Database(); // Initialize the database connection  
+            BookCategories = new ObservableCollection<BooksCatagory>();
+            Books = new ObservableCollection<Books>();
+            BindingContext = this; // Set the BindingContext to this page for data binding  
 
-            public ObservableCollection<BooksCatagory> BookCategories { get; set; }
-            public ObservableCollection<Books> Books { get; set; }
+            LoadBookCategories();
 
-            public bool IsCategoryVisible { get; set; } = true;
-            public bool IsBookVisible { get; set; } = false;
+            //booksCatagory = new BooksCatagory();
+        }
 
-
-            public MainPage()
+        void SearchFunction(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(e.NewTextValue))
             {
-                InitializeComponent();
-                _database = new Database(); // Initialize the database connection  
-                BookCategories = new ObservableCollection<BooksCatagory>();
-                Books = new ObservableCollection<Books>();
-                BindingContext = this; // Set the BindingContext to this page for data binding  
-
-                LoadBookCategories();
-
-                //booksCatagory = new BooksCatagory();
-            }
-
-            void SearchFunction(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
-            {
-                if (String.IsNullOrWhiteSpace(e.NewTextValue))
-                {
-                    collectionView.ItemsSource = BookCategories;
-                }
-                else
-                {
-                    collectionView.ItemsSource = BookCategories.Where(i => i.catagory.ToLower().Contains(e.NewTextValue.ToLower()));
-                }
-
-            }
-
-            private async void LoadBookCategories()
-            {
-                await _database.Initialize(); // Initialize the database
-                await _database.GetBookData(); // Ensure categories are populated
-
-                var categories = await _database.GetCategary();
-
-                if (categories == null || categories.Count == 0)
-                {
-                    await DisplayAlert("Info", "No categories found in the database.", "OK");
-                }
-
-                // Clear existing data
-                BookCategories.Clear();
-
-                // Add the fetched categories to the ObservableCollection
-                foreach (var category in categories)
-                {
-                    BookCategories.Add(category);
-                }
-
-                // Set the ItemsSource of the CollectionView
                 collectionView.ItemsSource = BookCategories;
             }
-
-
-            private async void OnCatagorySelection(object sender, SelectionChangedEventArgs e)
+            else
             {
-                // Check if there is a selected item  
-                if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
-                {
-                    // Get the selected item (assuming it's your data model)  
-                    var selectedItem = e.CurrentSelection.FirstOrDefault() as BooksCatagory;
-
-                    if (selectedItem != null)
-                    {
-                        IsCategoryVisible = false;
-                        IsBookVisible = true;
-                        OnPropertyChanged(nameof(IsCategoryVisible));
-                        OnPropertyChanged(nameof(IsBookVisible));
-
-                        await LoadBooksForCategory(selectedItem.catagory);
-                    }
-
-                    // Clear the selection after displaying the alert (optional)  
-                    collectionView.SelectedItem = null;
-                }
+                collectionView.ItemsSource = BookCategories.Where(i => i.catagory.ToLower().Contains(e.NewTextValue.ToLower()));
             }
 
-            private async Task LoadBooksForCategory(string category)
+        }
+
+        private async void LoadBookCategories()
+        {
+            await _database.Initialize(); // Initialize the database
+            await _database.GetBookData(); // Ensure categories are populated
+
+            var categories = await _database.GetCategary();
+
+            if (categories == null || categories.Count == 0)
             {
-                var books = await _database.GetBooksByCategory(category);
-
-                if (books == null || books.Count == 0)
-                {
-                    await DisplayAlert("Info", "No books found for the selected category.", "OK");
-                    BooksCollectionView.ItemsSource = null; // Optionally clear the view
-                    return;
-                }
-
-                Books.Clear();
-                foreach (var book in books)
-                {
-                    Books.Add(book);
-                }
-
-                BooksCollectionView.ItemsSource = Books;
+                await DisplayAlert("Info", "No categories found in the database.", "OK");
             }
 
+            // Clear existing data
+            BookCategories.Clear();
 
-        void SearchBooksFunction(object sender, TextChangedEventArgs e)
+            // Add the fetched categories to the ObservableCollection
+            foreach (var category in categories)
             {
-                if (string.IsNullOrWhiteSpace(e.NewTextValue))
-                {
-                    BooksCollectionView.ItemsSource = Books;
-                }
-                else
-                {
-                    BooksCollectionView.ItemsSource = Books
-                        .Where(b => b.title.ToLower().Contains(e.NewTextValue.ToLower()));
-                }
+                BookCategories.Add(category);
             }
+
+            // Set the ItemsSource of the CollectionView
+            collectionView.ItemsSource = BookCategories;
+        }
+
+
+        private async void OnCatagorySelection(object sender, SelectionChangedEventArgs e)
+        {
+            // Check if there is a selected item  
+            if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+            {
+                // Get the selected item (assuming it's your data model)  
+                var selectedItem = e.CurrentSelection.FirstOrDefault() as BooksCatagory;
+
+                if (selectedItem != null)
+                {
+                    IsCategoryVisible = false;
+                    IsBookVisible = true;
+                    OnPropertyChanged(nameof(IsCategoryVisible));
+                    OnPropertyChanged(nameof(IsBookVisible));
+
+                    //await LoadBooksForCategory(selectedItem.catagory);
+                }
+
+                // Clear the selection after displaying the alert (optional)  
+                collectionView.SelectedItem = null;
+            }
+            //}
+
+            //    private async Task LoadBooksForCategory(string category)
+            //    {
+            //        var books = await _database.GetBooksByCategory(category);
+
+            //        if (books == null || books.Count == 0)
+            //        {
+            //            await DisplayAlert("Info", "No books found for the selected category.", "OK");
+            //            BooksCollectionView.ItemsSource = null; // Optionally clear the view
+            //            return;
+            //        }
+
+            //        Books.Clear();
+            //        foreach (var book in books)
+            //        {
+            //            Books.Add(book);
+            //        }
+
+            //        BooksCollectionView.ItemsSource = Books;
+            //    }
+
+
+            //void SearchBooksFunction(object sender, TextChangedEventArgs e)
+            //    {
+            //        if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            //        {
+            //            BooksCollectionView.ItemsSource = Books;
+            //        }
+            //        else
+            //        {
+            //            BooksCollectionView.ItemsSource = Books
+            //                .Where(b => b.title.ToLower().Contains(e.NewTextValue.ToLower()));
+            //        }
+            //    }
         }
     }
+}
 

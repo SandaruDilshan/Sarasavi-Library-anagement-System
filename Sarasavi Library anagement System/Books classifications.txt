@@ -1,0 +1,30 @@
+A - Adventure 
+B - Art & Photography
+C - Biography
+D - Business
+E - Comics & Graphic Novels
+F - Cookbooks
+G - Drama
+H - Education
+I - Fantasy
+J - Fiction
+K - Health & Wellness
+L - History
+M - Horror
+N - Mystery
+O - Music
+P - Parenting
+Q - Philosophy
+R - Poetry
+S - Politics
+T - Psychology
+U - Religion
+V - Romance
+W - Science
+X - Science Fiction
+Y - Self-Help
+Z - Sports
+a - Technology
+b - Thriller
+c - Travel
+d - Travel Guides

@@ -95,7 +95,8 @@
                HorizontalOptions="Center"
                WidthRequest="300"
                FontSize="14"
-               TextChanged="SearchBooksFunction" />
+               />
+                <!--TextChanged="SearchBooksFunction" -->
 
                 <Image Source="search.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center"/>
 

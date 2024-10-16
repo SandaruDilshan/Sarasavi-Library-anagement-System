@@ -25,7 +25,7 @@
 
                 <VerticalStackLayout Spacing="15">
                     <HorizontalStackLayout>
-                        <Label Text="Title of thr Book:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Label Text="Title of the Book:" VerticalOptions="Center" WidthRequest="120"/>
                         <Entry x:Name="title" Placeholder="Enter title" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
                     </HorizontalStackLayout>
 
@@ -46,16 +46,17 @@
                         <Entry x:Name="category" Placeholder="Category"  HorizontalOptions="FillAndExpand" WidthRequest="300" />
 
                     </HorizontalStackLayout>
-                    
+
                     <HorizontalStackLayout>
-                        <Label Text="Number of Coppies:" VerticalOptions="Center" WidthRequest="150"/>
-                        <Entry x:Name="copies" Placeholder="Copies" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                        <Label Text="Classification:" VerticalOptions="Center" WidthRequest="120"/>
+                        <Entry x:Name="classification" Placeholder="Enter classification (e.g., A)" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout>
-                        <Label Text="Password:" VerticalOptions="Center" WidthRequest="120"/>
-                        <Entry x:Name="PasswordEntry" Placeholder="Enter password" IsPassword="True" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
+                        <Label Text="Number of Copies:" VerticalOptions="Center" WidthRequest="150"/>
+                        <Entry x:Name="copies" Placeholder="1-10" Keyboard="Numeric" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
                     </HorizontalStackLayout>
+
 
                     <HorizontalStackLayout>
                         <Label Text="Status:" VerticalOptions="Center" WidthRequest="120"/>
@@ -73,6 +74,7 @@
                         CornerRadius="5" 
                         WidthRequest="200" 
                         HorizontalOptions="Center"
+                        Clicked="AddBooks"
                         />
                 </VerticalStackLayout>
             </VerticalStackLayout>
