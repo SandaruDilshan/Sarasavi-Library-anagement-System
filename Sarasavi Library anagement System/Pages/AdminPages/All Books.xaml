@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sarasavi_Library_anagement_System.Pages.AdminPages.All_Books"
+             xmlns:local="clr-namespace:Sarasavi_Library_anagement_System.Data"
              Title="All_Books"
              BackgroundColor="WhiteSmoke">
 
@@ -23,9 +24,7 @@
         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" Padding="1">
             <Label Text="All :" FontAttributes="Bold" VerticalOptions="Center"/>
             <Label Text="Category :" VerticalOptions="Center" />
-            <Button Text="Borrowable" FontSize="12" VerticalOptions="Center" />
-            <Button Text="Reference" FontSize="12" VerticalOptions="Center" />
-            <Entry x:Name="SearchAdminBooks" Placeholder="Search" WidthRequest="350" BackgroundColor="White" />
+            <Entry x:Name="SearchAdminBooks" Placeholder="Search" WidthRequest="350" BackgroundColor="White" TextChanged="BookSearchAdminFunction"/>
             <Image Source="search.png" HeightRequest="25" VerticalOptions="Center"/>
         </HorizontalStackLayout>
 
@@ -42,11 +41,11 @@
             <Label Text="ISBN" Grid.Column="1" FontAttributes="Bold" />
             <Label Text="Title" Grid.Column="2" FontAttributes="Bold" />
             <Label Text="Author" Grid.Column="3" FontAttributes="Bold" />
-            <Label Text="Count" Grid.Column="4" FontAttributes="Bold" />
+            <Label Text="Status" Grid.Column="4" FontAttributes="Bold" />
         </Grid>
 
         <!-- CollectionView for displaying books -->
-        <CollectionView x:Name="AdminBooksCollectionView" 
+        <CollectionView x:Name="AdminBooksView" 
                         Grid.Row="2"
                         SelectionMode="Single" 
                         EmptyView="No category available"
@@ -66,12 +65,12 @@
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <!-- Bind each property to its respective column -->
-                            <Label Text="{Binding CopyNumber}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding ISBN}" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding Title}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding Author}" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding Count}" Grid.Column="4" VerticalOptions="Center" HorizontalOptions="Center" />
+                                        <Label Text="{Binding CopyNumber}" Grid.Column="0"  />
+                                        <Label Text="{Binding ISBN}" Grid.Column="1"  />
+                                        <Label Text="{Binding Title}" Grid.Column="2"  />
+                                        <Label Text="{Binding Publisher}" Grid.Column="3" />
+                                        <Label Text="{Binding Status}" Grid.Column="4"  />
+                           
                         </Grid>
                     </Frame>
                 </DataTemplate>

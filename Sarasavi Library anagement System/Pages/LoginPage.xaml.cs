@@ -19,6 +19,8 @@ public partial class LoginPage : ContentPage
         await _database.Initialize();
     }
 
+   
+
     private async void loginToHome(object sender, EventArgs e)
 	{
 		string username = UserNameEntry.Text;
@@ -35,6 +37,7 @@ public partial class LoginPage : ContentPage
 
         if (user != null)
 		{
+  
             string admin = "Admin";
             var isUser = await _database.IsAdmin(admin, username);
 
@@ -55,7 +58,8 @@ public partial class LoginPage : ContentPage
         }
     }
 
-	private async void OnSignInLabelTapped(object sender, EventArgs e)
+
+    private async void OnSignInLabelTapped(object sender, EventArgs e)
 	{
 		await Navigation.PushAsync(new SignUpPage());
 	}

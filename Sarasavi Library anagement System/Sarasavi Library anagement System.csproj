@@ -74,7 +74,7 @@
 	  <None Remove="Resources\Images\Education.webp" />
 	  <None Remove="Resources\Images\Fantasy.webp" />
 	  <None Remove="Resources\Images\fiction.jpeg" />
-	  <None Remove="Resources\Images\HealthWellness.jpeg" />
+	  <None Remove="Resources\Images\healthwellness.webp" />
 	  <None Remove="Resources\Images\history.jpg" />
 	  <None Remove="Resources\Images\Horror.webp" />
 	  <None Remove="Resources\Images\Music.jpg" />
@@ -111,7 +111,6 @@
 	<ItemGroup>
 	  <Folder Include="Controls\" />
 	  <Folder Include="ViewModel\" />
-	  <Folder Include="Models\" />
 	</ItemGroup>
 
 	<ItemGroup>

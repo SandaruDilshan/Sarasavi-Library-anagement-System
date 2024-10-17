@@ -20,4 +20,5 @@ public partial class LandingPage : ContentPage
     {
         await Navigation.PushAsync(new SignUpPage());
     }
+
 }

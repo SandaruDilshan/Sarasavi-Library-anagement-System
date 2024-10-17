@@ -37,19 +37,12 @@ namespace Sarasavi_Library_anagement_System.Data
             }
         }
 
-        //get books data from BooksData and sed it to database
-        public async Task SendBooksData()
+
+    //Get all books
+        public async Task<List<Books>> GetAllBooks()
         {
-            //var firstBook = await _conn.Table<Books>().FirstOrDefaultAsync();
-
-            //if(firstBook != null)
-            //{
-            //    return;
-            //}
-            ////var books = BooksData.GetBooks();
-            //await _conn.InsertAllAsync(books);
+            return await _conn.Table<Books>().ToListAsync();
         }
-
 
 
     //BooksRegistration

@@ -1,6 +1,7 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Sarasavi_Library_anagement_System.Pages.MainPage">
+             x:Class="Sarasavi_Library_anagement_System.Pages.MainPage"       
+             >
 
     <Grid>
         <!--Display all catagory-->
@@ -39,6 +40,7 @@
                             SelectionMode="Single" 
                             EmptyView="No category available"
                             SelectionChanged="OnCatagorySelection"
+                            ItemsSource="{Binding Categories}" 
                            >
 
                 <CollectionView.Header>
@@ -117,6 +119,7 @@
                     Grid.Row="1"
                     SelectionMode="Single" 
                     EmptyView="No category available"
+                    ItemsSource="{Binding Books}"
                     SelectionChanged="OnCatagorySelection"
                    >
 
@@ -134,7 +137,7 @@
                     <GridItemsLayout Orientation="Vertical" Span="4" />
                 </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
+                <CollectionView.ItemTemplate >
                     <DataTemplate>
                         <Frame Margin="10">
                             <Grid>
@@ -142,15 +145,15 @@
                                     <ColumnDefinition Width=".9*" />
                                     <ColumnDefinition Width=".1*" />
                                 </Grid.ColumnDefinitions>
-                                <VerticalStackLayout>
-                                    <Image Source="{Binding image}" Grid.Column="0" HeightRequest="150"/>
-                                    <HorizontalStackLayout Grid.Column="0" Padding="5" VerticalOptions="Center">
-                                        <Label Text="{Binding isbn}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
-                                        <Label Text="{Binding title}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
-                                        <Label Text="{Binding author}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
-                                        <Label Text="{Binding status}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
-                                    </HorizontalStackLayout>
-                                    <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
+                                <VerticalStackLayout Spacing="10">
+                                    <Image Source="{Binding Image}" Grid.Column="0" HeightRequest="150"/>
+                                    <VerticalStackLayout Grid.Column="0" Padding="5" VerticalOptions="Center" Spacing="2">
+                                        <Label Text="{Binding ISBN}" VerticalOptions="Center" HorizontalOptions="Center"  />
+                                        <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Center"  />
+                                        <Label Text="{Binding Publisher}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                        <Label Text="{Binding Status}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
+                                    </VerticalStackLayout>
+                                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                                         <Button Text="Read" />
                                         <Button Text="Borrow" />
                                     </HorizontalStackLayout>
@@ -160,8 +163,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-
         </Grid>
     </Grid>
 

@@ -11,8 +11,8 @@ namespace Sarasavi_Library_anagement_System.Data
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
-        public String catagory { get; set; }
-        public String image { get; set; }
+        public string catagory { get; set; }
+        public string image { get; set; }
 
     }
 }
