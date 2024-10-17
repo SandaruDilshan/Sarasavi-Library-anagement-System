@@ -18,7 +18,7 @@ public partial class Add_new_books : ContentPage
 
     }
 
-    private async void InitializeDatabase()
+    private async void InitializeDatabase() 
     {
         await _database.Initialize();
     }
