@@ -3,10 +3,153 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sarasavi_Library_anagement_System.Pages.AdminPages.Dashboard"
              Title="Dashboard">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        
+        <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Spacing="20" Padding="20">
+            <Frame WidthRequest="200" 
+                   HeightRequest="200" 
+                   CornerRadius="10"
+                   BackgroundColor="LightGray" 
+                   Padding="10" BorderColor="Gray" >
+                
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label Text="New Reservations" 
+                           FontSize="14" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
+                    <Label Text="20" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame WidthRequest="200" 
+                HeightRequest="200" 
+                CornerRadius="10"
+                BackgroundColor="LightGray" 
+                Padding="10" BorderColor="Gray" >
+
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label Text="Pending Reservations" 
+                    FontSize="14" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center" />
+                    <Label Text="63" 
+                    FontSize="20" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame WidthRequest="200" 
+                HeightRequest="200" 
+                CornerRadius="10"
+                BackgroundColor="LightGray" 
+                Padding="10" BorderColor="Gray" >
+
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label Text="Warning Borrowers" 
+                    FontSize="14" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center" />
+                    <Label Text="10" 
+                    FontSize="20" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame WidthRequest="200" 
+             HeightRequest="200" 
+             CornerRadius="10"
+             BackgroundColor="LightGray" 
+             Padding="10" BorderColor="Gray" >
+
+                <VerticalStackLayout VerticalOptions="Center">
+                     <Label Text="Expired Borrowers" 
+                     FontSize="14" 
+                     FontAttributes="Bold" 
+                     HorizontalOptions="Center" 
+                     VerticalOptions="Center" />
+                    <Label Text="2" 
+                     FontSize="20" 
+                     HorizontalOptions="Center" 
+                     VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1" Spacing="20" VerticalOptions="Center">
+
+            <Image Source="booksworld.jpg"  WidthRequest="500" VerticalOptions="Center" HorizontalOptions="Center" Margin="120,0,80,0"/>
+            <VerticalStackLayout Spacing="20" VerticalOptions="End" HorizontalOptions="End" Grid.Column="1" >
+                <Frame WidthRequest="200" 
+                   HeightRequest="100" 
+                   CornerRadius="10"
+                   BackgroundColor="LightGray" 
+                   Padding="10" BorderColor="Gray" >
+
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Total Users" 
+                           FontSize="14" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
+                        <Label Text="1764" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame WidthRequest="200" 
+                   HeightRequest="100" 
+                   CornerRadius="10"
+                   BackgroundColor="LightGray" 
+                   Padding="10" BorderColor="Gray" >
+
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Total Books" 
+                           FontSize="14" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
+                        <Label Text="15590" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame WidthRequest="200" 
+                       HeightRequest="100" 
+                       CornerRadius="10"
+                       BackgroundColor="LightGray" 
+                       Padding="10" BorderColor="Gray" >
+
+                    <VerticalStackLayout>
+                        <Label Text="Total Collections" 
+                               FontSize="14" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" />
+                        <Label Text="32" 
+                               FontSize="20" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+    </Grid>
+    
+
 </ContentPage>

@@ -58,12 +58,14 @@
 	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
 	  <None Remove="Resources\Images\Adventure.jpg" />
 	  <None Remove="Resources\Images\ArtPhotography.jpg" />
+	  <None Remove="Resources\Images\back.png" />
 	  <None Remove="Resources\Images\bdbook.webp" />
 	  <None Remove="Resources\Images\biography.jpg" />
 	  <None Remove="Resources\Images\book.png" />
 	  <None Remove="Resources\Images\bookadmin.png" />
 	  <None Remove="Resources\Images\bookbg.jpg" />
 	  <None Remove="Resources\Images\bookingb.png" />
+	  <None Remove="Resources\Images\booksworld.jpg" />
 	  <None Remove="Resources\Images\Business.webp" />
 	  <None Remove="Resources\Images\ComicsGraphicNovels.png" />
 	  <None Remove="Resources\Images\Cookbooks.webp" />
@@ -119,10 +121,10 @@
 	  <MauiXaml Update="Pages\AdminPages\Add Users.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AdminPages\Books.xaml">
+	  <MauiXaml Update="Pages\AdminPages\AdminShell.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AdminPages\AdminShell.xaml">
+	  <MauiXaml Update="Pages\AdminPages\All Books.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\AdminPages\Dashboard.xaml">

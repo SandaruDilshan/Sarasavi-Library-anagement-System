@@ -14,6 +14,9 @@
 
             <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0,0,0,10" Spacing="10">
 
+                <Image Source="back.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start" 
+                   Margin="0,0,0,0" 
+                    />
                 <Label Text="All :" 
                        FontSize="14" 
                        FontAttributes="Bold"
@@ -84,19 +87,27 @@
 
             <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0,0,0,10" Spacing="10">
 
+                <Image Source="back.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start" 
+                                Margin="0,0,10,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="BackToCategory" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+
                 <Label Text="All :" 
-               FontSize="14" 
-               FontAttributes="Bold"
-               Padding="5"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
+                   FontSize="14" 
+                   FontAttributes="Bold"
+                   Padding="5"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
                 />
                 <Entry Placeholder="Search books" 
-               HorizontalOptions="Center"
-               WidthRequest="300"
-               FontSize="14"
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   FontSize="14"
+                   TextChanged="BooksSearchFunction"
                />
-                <!--TextChanged="SearchBooksFunction" -->
 
                 <Image Source="search.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center"/>
 
@@ -111,7 +122,7 @@
 
                 <CollectionView.Header>
                     <StackLayout Padding="10" BackgroundColor="LightGray">
-                        <Label Text="Book Categories" 
+                        <Label Text="Book Collection" 
                        FontSize="24" 
                        FontAttributes="Bold"
                        HorizontalOptions="Center" 
@@ -139,10 +150,10 @@
                                         <Label Text="{Binding author}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
                                         <Label Text="{Binding status}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
                                     </HorizontalStackLayout>
-                                    <VerticalStackLayout>
+                                    <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
                                         <Button Text="Read" />
                                         <Button Text="Borrow" />
-                                    </VerticalStackLayout>
+                                    </HorizontalStackLayout>
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>

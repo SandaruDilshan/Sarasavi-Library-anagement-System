@@ -1,9 +1,10 @@
 using System.Linq;
 using Microsoft.Maui.Platform;
+namespace Sarasavi_Library_anagement_System.Pages.AdminPages;
 using Sarasavi_Library_anagement_System.Data;
+ 
 //using SoundAnalysis;
 
-namespace Sarasavi_Library_anagement_System.Pages.AdminPages;
 
 public partial class Add_new_books : ContentPage
 {
@@ -125,7 +126,7 @@ public partial class Add_new_books : ContentPage
                 Publisher = Publishers,
                 Category = Categorys,
                 Classification = Classfications,
-                NumOfCopies = Copiess,
+                NumOfCopies = copyNumber,
                 BookNumber = bookNumber,
                 CopyNumber = copyNumber,
                 Status = Status,

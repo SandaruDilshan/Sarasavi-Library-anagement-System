@@ -119,8 +119,20 @@ namespace Sarasavi_Library_anagement_System.Data
             return await _conn.Table<BooksCatagory>().ToListAsync();
         }
 
+        //get all books for relevent category
+        public async Task<List<Books>> GetBooksByCategory(string category)
+        {
+            var books = await _conn.Table<Books>()
+                .Where(b => b.Category == category)
+                .ToListAsync();
 
-    //SignUp
+            return books
+                .GroupBy(b => b.ISBN) // Group by the unique identifier of the book (e.g., ISBN)
+                .Select(g => g.First()) // Select the first book from each group
+                .ToList();
+        }
+
+        //SignUp
         //genarate user number for signup
         public async Task<string> GenerateUserNumber()
         {
@@ -149,6 +161,12 @@ namespace Sarasavi_Library_anagement_System.Data
             return await _conn.Table<Users>()
                .Where(u => u.user_name == username && u.password == password)
                .FirstOrDefaultAsync();
+        }
+
+        public async Task<Users> IsAdmin(String admin, String username)
+        {
+            return await _conn.Table<Users>()
+                .Where(a => a.user_name == admin && username == admin).FirstOrDefaultAsync();
         }
 
 

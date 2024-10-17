@@ -38,17 +38,18 @@
         />
 
     <FlyoutItem Title="Books" Icon="bookadmin.png">
+
         <ShellContent
             Title="All Books"
-            ContentTemplate="{DataTemplate adminpages:Books}"
-            Route="Books"
+            ContentTemplate="{DataTemplate adminpages:All_Books}"
+            Route="All_Books"
             Shell.TitleColor="White"
             Shell.ForegroundColor="LightBlue" />
-
+        
         <ShellContent
             Title="Add Books"
             ContentTemplate="{DataTemplate adminpages:Add_new_books}"
-            Route="Books/AddBook"
+            Route="All_Books/AddBook"
             Shell.TitleColor="White"
             Shell.ForegroundColor="White" />
     </FlyoutItem>

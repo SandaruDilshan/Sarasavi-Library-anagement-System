@@ -31,12 +31,23 @@ public partial class LoginPage : ContentPage
         }
 
 		var user = await _database.GetUsernameAndPassword(username, password);
+		
 
         if (user != null)
 		{
+            string admin = "Admin";
+            var isUser = await _database.IsAdmin(admin, username);
+
+            if (isUser != null)
+			{
+				Application.Current.MainPage = new AdminShell();
+			}
+			else
+			{
+				Application.Current.MainPage = new AppShell();
+			}
+
 			await DisplayAlert("Success", "Login successfull", "OK");
-			//Application.Current.MainPage = new AppShell();
-			Application.Current.MainPage = new AdminShell();
         }
         else
         {
