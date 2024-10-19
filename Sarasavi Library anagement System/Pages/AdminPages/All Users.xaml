@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Sarasavi_Library_anagement_System.Pages.AdminPages.Users"
-             Title="Users" BackgroundColor="WhiteSmoke">
+             x:Class="Sarasavi_Library_anagement_System.Pages.AdminPages.All_Users"
+             Title="Users" BackgroundColor="WhiteSmoke"
+             xmlns:vm="clr-namespace:Sarasavi_Library_anagement_System.Data"
+             x:DataType="vm:Users"
+             >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -21,7 +24,7 @@
         <!-- Search and Filter Bar -->
         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" Padding="1">
             <Label Text="All Users:" FontAttributes="Bold" VerticalOptions="Center"/>
-            <Entry x:Name="SearchAdminUsers" Placeholder="Search" WidthRequest="350" BackgroundColor="White" />
+            <Entry x:Name="SearchAdminUsers" Placeholder="Search" WidthRequest="350" BackgroundColor="White" TextChanged="UserSearch"/>
             <Image Source="search.png" HeightRequest="25" VerticalOptions="Center"/>
         </HorizontalStackLayout>
 
@@ -38,7 +41,7 @@
         </Grid>
 
         <!-- CollectionView for displaying books -->
-        <CollectionView x:Name="AdminBooksCollectionView" 
+        <CollectionView x:Name="AdminUsersCollectionView" 
                         Grid.Row="2"
                         SelectionMode="Single" 
                         EmptyView="No category available"
@@ -57,9 +60,9 @@
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <!-- Bind each property to its respective column -->
-                            <Label Text="{Binding UserNumber}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding UserName}" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding Status}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Label Text="{Binding user_number}" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="{Binding user_name}" Grid.Column="1" VerticalOptions="Center" />
+                            <Label Text="{Binding userType}" Grid.Column="2" VerticalOptions="Center" />
                         </Grid>
                     </Frame>
                 </DataTemplate>

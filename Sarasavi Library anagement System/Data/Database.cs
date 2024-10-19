@@ -38,6 +38,12 @@ namespace Sarasavi_Library_anagement_System.Data
         }
 
 
+    //Get All users
+        public async Task<List<Users>> GrtAllUsers()
+        {
+            return await _conn.Table<Users>().ToListAsync();
+        }
+
     //Get all books
         public async Task<List<Books>> GetAllBooks()
         {

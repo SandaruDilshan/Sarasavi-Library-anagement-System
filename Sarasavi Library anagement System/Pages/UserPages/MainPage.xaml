@@ -1,11 +1,14 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Sarasavi_Library_anagement_System.Pages.MainPage"       
+             x:Class="Sarasavi_Library_anagement_System.Pages.MainPage" 
+             xmlns:vm="clr-namespace:Sarasavi_Library_anagement_System.Data"
+             
              >
 
-    <Grid>
+    <Grid ColumnDefinitions=".75*, .25*">
+        <Grid Grid.Column="0">
         <!--Display all catagory-->
-        <Grid IsVisible="{Binding IsCategoryVisible}">
+        <Grid IsVisible="{Binding IsCategoryVisible}" >
         
             <!-- Define rows or columns as needed -->
             <Grid.RowDefinitions>
@@ -68,7 +71,7 @@
                                 <VerticalStackLayout>
                                     <Image Source="{Binding image}" Grid.Column="0" HeightRequest="150"/>
                                     <HorizontalStackLayout Grid.Column="0" Padding="5" VerticalOptions="Center">
-                                        <Label Text="{Binding catagory}" VerticalOptions="Center" HorizontalOptions="Center" Margin="60,0,0,0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding catagory}" VerticalOptions="Center" HorizontalOptions="Center" Margin="35,0,0,0" FontAttributes="Bold"/>
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>
                             </Grid>
@@ -126,10 +129,10 @@
                 <CollectionView.Header>
                     <StackLayout Padding="10" BackgroundColor="LightGray">
                         <Label Text="Book Collection" 
-                       FontSize="24" 
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" />
+                           FontSize="24" 
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
                     </StackLayout>
                 </CollectionView.Header>
 
@@ -140,29 +143,108 @@
                 <CollectionView.ItemTemplate >
                     <DataTemplate>
                         <Frame Margin="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".9*" />
+                                        <ColumnDefinition Width=".1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <VerticalStackLayout Spacing="10" >
+                                        <Image Source="{Binding Image}" Grid.Column="0" HeightRequest="150"/>
+                                        <VerticalStackLayout  Padding="5" VerticalOptions="Center" Spacing="2" Grid.Column="0">
+                                            <Label Text="{Binding ISBN}" VerticalOptions="Center" HorizontalOptions="Center"  />
+                                            <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Center"  />
+                                            <Label Text="{Binding Publisher}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                            <Label Text="{Binding Status}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
+                                        </VerticalStackLayout>
+                                        <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                                            <Button Text="Read" FontSize="12" Clicked="OnReadButtonClicked" BindingContext="{Binding .}"/>
+                                            <Button Text="Borrow" FontSize="12" Clicked="OnBorrowButtonClicked" BindingContext="{Binding .}"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+       </Grid>
+        
+        <Grid Grid.Column="1" BackgroundColor="WhiteSmoke" Margin="2,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <VerticalStackLayout Grid.Row="0" BackgroundColor="LightGrey">
+                <Label Text="Cart Items" FontSize="26" FontAttributes="Bold" Padding="10" Margin="10,0,0,0"  VerticalOptions="Center" />
+                <Label Text="You can only reserve maximum 5 books at a time. "  Margin="20,0,0,12" />
+            </VerticalStackLayout>
+
+            <CollectionView x:Name="BooksReservationsCollectionView" 
+                 Grid.Row="1"
+                 SelectionMode="Single" 
+                 EmptyView="No category available"
+                 
+                 SelectionChanged="OnCatagorySelection"
+                 ItemsSource="{Binding CartItems}"
+                >
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate >
+                    <DataTemplate>
+                        <Frame Margin="10">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width=".9*" />
-                                    <ColumnDefinition Width=".1*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <VerticalStackLayout Spacing="10">
-                                    <Image Source="{Binding Image}" Grid.Column="0" HeightRequest="150"/>
-                                    <VerticalStackLayout Grid.Column="0" Padding="5" VerticalOptions="Center" Spacing="2">
-                                        <Label Text="{Binding ISBN}" VerticalOptions="Center" HorizontalOptions="Center"  />
-                                        <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Center"  />
-                                        <Label Text="{Binding Publisher}" VerticalOptions="Center" HorizontalOptions="Center" />
-                                        <Label Text="{Binding Status}" VerticalOptions="Center" HorizontalOptions="Center"  FontAttributes="Bold"/>
+                                <HorizontalStackLayout Spacing="10" >
+                                    <Image Source="{Binding Image}" HeightRequest="30" Grid.Column="0" />
+                                    <VerticalStackLayout   VerticalOptions="Center" Spacing="2" Grid.Column="1">
+                                        <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" />
+                                        <Label Text="{Binding BookISBN}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" />
+                                        <Label Text="{Binding StatusBorR}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="12"/>
                                     </VerticalStackLayout>
-                                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                                        <Button Text="Read" />
-                                        <Button Text="Borrow" />
+                                    <HorizontalStackLayout Spacing="5" HorizontalOptions="Center" Grid.Column="2">
+                                        <Image Source="minus.png" HeightRequest="18" >
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnDecreaseQuantityButtonClicked" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Label Text="{Binding Quantity}" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="LightGray" WidthRequest="20" />
+                                        <Image Source="plussign.png" HeightRequest="18" >
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnIncreaseQuantityButtonClicked" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
                                     </HorizontalStackLayout>
-                                </VerticalStackLayout>
+                                    <Image Source="delete.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,10,0" ToolTipProperties.Text="Remove item">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="RemoveItem" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </HorizontalStackLayout>
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
             </CollectionView>
+
+            <VerticalStackLayout Grid.Row="2" BackgroundColor="LightGray">
+                <Label Text="If your unable to return books after two week, you i'll have to pay a fine of 1$." FontSize="12" Margin="20,5,10,0"/>
+                <HorizontalStackLayout HorizontalOptions="End" Spacing="20" Margin="20,0,10,0">
+                    <Label Text="Agree" FontAttributes="Bold" FontSize="12" TextColor="Red" VerticalOptions="Center"/>
+                    <CheckBox x:Name="FemaleCheckBox" />
+                </HorizontalStackLayout>
+                <Button Text="Reserve" Margin="20,0,10,20" />
+            </VerticalStackLayout>
         </Grid>
     </Grid>
 

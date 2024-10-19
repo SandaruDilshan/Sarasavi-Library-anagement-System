@@ -91,7 +91,7 @@
         </HorizontalStackLayout>
         <HorizontalStackLayout Grid.Row="1" Spacing="20" VerticalOptions="Center">
 
-            <Image Source="booksworld.jpg"  WidthRequest="500" VerticalOptions="Center" HorizontalOptions="Center" Margin="120,0,80,0"/>
+            <Image Source="booksworld.jpg"  WidthRequest="500" VerticalOptions="Center" HorizontalOptions="Center" Margin="150,0,80,0"/>
             <VerticalStackLayout Spacing="20" VerticalOptions="End" HorizontalOptions="End" Grid.Column="1" >
                 <Frame WidthRequest="200" 
                    HeightRequest="100" 

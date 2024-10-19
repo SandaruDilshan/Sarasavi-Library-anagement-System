@@ -1,25 +1,42 @@
-﻿using Microsoft.Maui.Controls;
+﻿//using HealthKit;
+using CommunityToolkit.Maui.Core.Platform;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
 using Sarasavi_Library_anagement_System.Data;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
     namespace Sarasavi_Library_anagement_System.Pages
     {
-    public partial class MainPage : ContentPage, INotifyPropertyChanged
+    public partial class MainPage : ContentPage, INotifyPropertyChanged, INotifyCollectionChanged
     {
 
         private readonly Database _database;
         public new event PropertyChangedEventHandler? PropertyChanged; // This is a delegate type that defines the signature for the PropertyChanged event. It is typically used with the INotifyPropertyChanged interface.
 
-
+        public event NotifyCollectionChangedEventHandler CollectionChanged; 
         public ObservableCollection<BooksCatagory> BookCategories { get; set; }
         public ObservableCollection<Books> Books { get; set; }
+        //public ObservableCollection<CartModel> Carts { get; set; } = new (); 
 
         public bool IsCategoryVisible { get; set; } = true;
         public bool IsBookVisible { get; set; } = false;
+
+        private ObservableCollection<CartModel> _carts;
+        public ObservableCollection<CartModel> CartModel
+        {
+            get => _carts;
+            set
+            {
+                _carts = value;
+                OnPropertyChanged(nameof(CartModel)); // Notify that Carts has changed
+            }
+        }
+
 
         protected void OnPropertyChanged(string propertyName)
         {
@@ -33,13 +50,159 @@ using System.Threading.Tasks;
             _database = new Database();
             BookCategories = new ObservableCollection<BooksCatagory>();
             Books = new ObservableCollection<Books>();
+            CartModel = new ObservableCollection<CartModel>(); // Ensure Carts is initialized
+
             BindingContext = this;
 
             LoadBookCategories();
+        }
 
+        //Reservations
+
+        private void OnBorrowButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button && button.BindingContext is Books selectedBook)
+            {
+                if (UpdateTotalQuantity() < 5) { 
+                    var cartItem = CartModel.FirstOrDefault(c => c.BookISBN == selectedBook.ISBN);
+
+                    if (cartItem == null)
+                    {
+                        cartItem = new CartModel()
+                        {
+                            Image = selectedBook.Image,
+                            BookISBN = selectedBook.ISBN,
+                            Title = selectedBook.Title,
+                            StatusBorR = "Borrow",
+                            Quantity = 1
+                        };
+                        CartModel.Add(cartItem);
+                        OnPropertyChanged(nameof(CartModel));
+                        BooksReservationsCollectionView.ItemsSource = CartModel;
+
+                    }
+                    else
+                    {
+                        if (cartItem.StatusBorR == "Borrow")
+                        {
+                            cartItem.Quantity++;
+                        }
+                        else
+                        {
+                            DisplayAlert("Info", "You can select borrow or read only", "OK");
+                        }
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Alert", "You can not reserve more than 5 Books at a time", "OK");
+                    return;
+                }
+
+            }
+            else
+            {
+                DisplayAlert("Error", "Selected book not found", "OK");
+            }
         }
 
 
+        private void OnReadButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button && button.BindingContext is Books selectedBook)
+            {
+                if (UpdateTotalQuantity() < 5)
+                {
+                    var cartItem = CartModel.FirstOrDefault(c => c.BookISBN == selectedBook.ISBN);
+
+                    if (cartItem == null)
+                    {
+                        cartItem = new CartModel()
+                        {
+                            Image = selectedBook.Image,
+                            BookISBN = selectedBook.ISBN,
+                            Title = selectedBook.Title,
+                            StatusBorR = "Read",
+                            Quantity = 1
+                        };
+                        CartModel.Add(cartItem);
+                        OnPropertyChanged(nameof(CartModel));
+                        BooksReservationsCollectionView.ItemsSource = CartModel;
+                    }
+                    else
+                    {
+                        if (cartItem.StatusBorR == "Read") { 
+                            cartItem.Quantity++;
+                        }
+                        else
+                        {
+                            DisplayAlert("Info", $"You can select borrow or read only {cartItem.Quantity} ", "OK");
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Alert", "You can not reserve more than 5 Books at a time", "OK");
+                    return;
+                }
+            }
+        }
+
+        //Decrease
+        private void OnDecreaseQuantityButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is Image image && image.BindingContext is CartModel cartItem)
+            {
+                if (cartItem.Quantity > 1)
+                {
+                    cartItem.Quantity--;
+                    OnPropertyChanged(nameof(CartModel));
+                }
+            }
+        }
+
+        //Increase
+        private void OnIncreaseQuantityButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is Image image && image.BindingContext is CartModel cartItem)
+            {
+                if (UpdateTotalQuantity() < 5)
+                {
+                    cartItem.Quantity++;
+                    OnPropertyChanged(nameof(CartModel));
+                }
+                else
+                {
+                    DisplayAlert("Alert", "You can not reserve more than 5 Books at a time", "OK");
+                }
+            }
+        }
+
+        //Delete item
+        public void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+           CollectionChanged?.Invoke(this, e);
+        }
+
+        public void RemoveItem(object sender, EventArgs e)
+        {
+            if (sender is Image image && image.BindingContext is CartModel cartItem)
+            {
+                CartModel.Remove(cartItem);
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, cartItem));
+            }
+        }
+
+        //Update quantity
+        private int UpdateTotalQuantity()
+        {
+            int totalQuantity = CartModel.Sum(item => item.Quantity);
+            return totalQuantity;
+        }
+
+
+        //Book categories
         void SearchFunction(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(e.NewTextValue))
@@ -135,6 +298,7 @@ using System.Threading.Tasks;
             {
                 BooksCollectionView.ItemsSource = Books.Where(i => i.Category.ToLower().Contains(e.NewTextValue.ToLower()));
             }
+            OnPropertyChanged(nameof(CartModel));
         }
     }
 

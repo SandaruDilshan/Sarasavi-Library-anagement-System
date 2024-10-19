@@ -57,7 +57,7 @@
     <FlyoutItem Title="Users" Icon="user.png">
         <ShellContent
            Title="Users"   
-           ContentTemplate="{DataTemplate adminpages:Users}"
+           ContentTemplate="{DataTemplate adminpages:All_Users}"
            Route="Users"
            Shell.TitleColor="White"
            Shell.ForegroundColor="White"

@@ -51,12 +51,6 @@
                         <Entry x:Name="UserNameEntry" Placeholder="Enter username" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
                     </HorizontalStackLayout>
 
-                    <!--
-                    <HorizontalStackLayout>
-                        <Label Text="User Number:" VerticalOptions="Center" WidthRequest="120"/>
-                        <Entry x:Name="UserNumberEntry" Placeholder="Enter user number" HorizontalOptions="FillAndExpand" WidthRequest="300"/>
-                    </HorizontalStackLayout>
-                    -->
                     
                     <HorizontalStackLayout>
                         <Label Text="NIC:" VerticalOptions="Center" WidthRequest="120"/>

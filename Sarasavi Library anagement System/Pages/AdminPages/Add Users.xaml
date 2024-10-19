@@ -67,6 +67,7 @@
                          CornerRadius="5" 
                          WidthRequest="200" 
                          HorizontalOptions="Center"
+                         Clicked="AddUser"
                         />
                     <!-- Clicked="SignUpClick"-->
                 </VerticalStackLayout>

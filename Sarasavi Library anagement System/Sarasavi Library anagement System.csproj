@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Images\ComicsGraphicNovels.png" />
 	  <None Remove="Resources\Images\Cookbooks.webp" />
 	  <None Remove="Resources\Images\dashboard.png" />
+	  <None Remove="Resources\Images\delete.png" />
 	  <None Remove="Resources\Images\Drama.jpg" />
 	  <None Remove="Resources\Images\Education.webp" />
 	  <None Remove="Resources\Images\Fantasy.webp" />
@@ -77,10 +78,12 @@
 	  <None Remove="Resources\Images\healthwellness.webp" />
 	  <None Remove="Resources\Images\history.jpg" />
 	  <None Remove="Resources\Images\Horror.webp" />
+	  <None Remove="Resources\Images\minus.png" />
 	  <None Remove="Resources\Images\Music.jpg" />
 	  <None Remove="Resources\Images\Mystery.jpg" />
 	  <None Remove="Resources\Images\Parenting.jpeg" />
 	  <None Remove="Resources\Images\Philosophy.jpg" />
+	  <None Remove="Resources\Images\plussign.png" />
 	  <None Remove="Resources\Images\Poetry.jpg" />
 	  <None Remove="Resources\Images\Politics.jpeg" />
 	  <None Remove="Resources\Images\Psychology.jpg" />
@@ -114,6 +117,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\AdminPages\All Users.xaml.cs">
+	    <DependentUpon>All Users.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\AdminPages\Add new books.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -138,7 +147,7 @@
 	  <MauiXaml Update="Pages\AdminPages\Return.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AdminPages\Users.xaml">
+	  <MauiXaml Update="Pages\AdminPages\All Users.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LandingPage.xaml">

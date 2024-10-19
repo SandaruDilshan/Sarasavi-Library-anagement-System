@@ -15,7 +15,5 @@ namespace Sarasavi_Library_anagement_System.Data
         public String status { get; set; } = "New"; // Pending or Approved
         public String notification_message { get; set; } // After admin confirm or reject
 
-    }
-
-    
+    }    
 }
