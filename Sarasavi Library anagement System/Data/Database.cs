@@ -37,14 +37,48 @@ namespace Sarasavi_Library_anagement_System.Data
             }
         }
 
+        //Save Cart items
 
-    //Get All users
+        //return copy numbers
+        public async Task<string> GetCopyNumberByISBNAsync(string isbn, int count)
+        {
+            var books = await _conn.Table<Books>()
+                .Where(b => b.ISBN == isbn)
+                .OrderBy(b => b.CopyNumber) 
+                .ToListAsync();
+
+            if (count < 1 || count > books.Count)
+            {
+                return null; 
+            }
+            return books[count - 1].CopyNumber; 
+        }
+
+
+
+        public async Task<int?> GetUserNumber(string userName)
+        {
+            // Query the Users table to find the user with the given userName
+            var user = await _conn.Table<Users>()
+                .Where(u => u.user_name == userName)
+                .FirstOrDefaultAsync();
+
+            return user?.user_number;
+        }
+
+        public Task<int> SaveReservationAsync(ReservationsRequest reservation)
+        {
+            return _conn.InsertAsync(reservation);
+        }
+
+    //Cart
+        //Get All users
         public async Task<List<Users>> GrtAllUsers()
         {
             return await _conn.Table<Users>().ToListAsync();
         }
 
-    //Get all books
+        //Get all books
         public async Task<List<Books>> GetAllBooks()
         {
             return await _conn.Table<Books>().ToListAsync();
@@ -167,7 +201,6 @@ namespace Sarasavi_Library_anagement_System.Data
             return await _conn.Table<Users>()
                 .Where(a => a.user_name == admin && username == admin).FirstOrDefaultAsync();
         }
-
 
         public async ValueTask DisposeAsync()
         {

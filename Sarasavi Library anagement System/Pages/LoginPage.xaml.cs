@@ -1,3 +1,4 @@
+using Microsoft.Maui.Storage;
 using Sarasavi_Library_anagement_System.Data;
 using Sarasavi_Library_anagement_System.Pages;
 using Sarasavi_Library_anagement_System.Pages.AdminPages;
@@ -19,7 +20,8 @@ public partial class LoginPage : ContentPage
         await _database.Initialize();
     }
 
-   
+
+
 
     private async void loginToHome(object sender, EventArgs e)
 	{
@@ -37,6 +39,8 @@ public partial class LoginPage : ContentPage
 
         if (user != null)
 		{
+			// Store user ID after login
+			Preferences.Set("LoggedInUserName", user.user_name);
   
             string admin = "Admin";
             var isUser = await _database.IsAdmin(admin, username);

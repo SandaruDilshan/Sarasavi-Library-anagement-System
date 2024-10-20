@@ -238,13 +238,14 @@
             </CollectionView>
 
             <VerticalStackLayout Grid.Row="2" BackgroundColor="LightGray">
-                <Label Text="If your unable to return books after two week, you i'll have to pay a fine of 1$." FontSize="12" Margin="20,5,10,0"/>
+                <Label Text="If you're unable to return books after two weeks, you'll have to pay a fine of $1." FontSize="12" Margin="20,5,10,0"/>
                 <HorizontalStackLayout HorizontalOptions="End" Spacing="20" Margin="20,0,10,0">
                     <Label Text="Agree" FontAttributes="Bold" FontSize="12" TextColor="Red" VerticalOptions="Center"/>
-                    <CheckBox x:Name="FemaleCheckBox" />
+                    <CheckBox x:Name="ReservationCheckBox" />
                 </HorizontalStackLayout>
-                <Button Text="Reserve" Margin="20,0,10,20" />
+                <Button Text="Reserve" Margin="20,0,10,20" Clicked="ReserveBooksAsync"/>
             </VerticalStackLayout>
+
         </Grid>
     </Grid>
 

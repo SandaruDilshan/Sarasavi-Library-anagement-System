@@ -46,14 +46,6 @@
         ContentTemplate="{DataTemplate pages:UserNotification}"
         Route="UserNotification" />
 
-    <ShellContent
-        Icon="booking.png"
-        Title="Reservation"
-        Shell.TitleColor="White"
-        ContentTemplate="{DataTemplate pages:UserReservationPage}"
-        Route="UserxReservationPage" />
-
-
 
     <Shell.FlyoutFooter>
         <Image 

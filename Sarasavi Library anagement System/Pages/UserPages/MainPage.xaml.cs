@@ -1,5 +1,6 @@
-﻿//using HealthKit;
+﻿
 using CommunityToolkit.Maui.Core.Platform;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using Sarasavi_Library_anagement_System.Data;
@@ -57,10 +58,81 @@ using System.Threading.Tasks;
             LoadBookCategories();
         }
 
+        // Method to handle reservation logic
+        //[RelayCommand]
+        private async void ReserveBooksAsync(object sender, EventArgs e)
+        {
+            var cartItems = CartModel.ToList();
+            var userNumber = await GetUserIdfromNameAsync();
+            var isCheck = await isCheckReservationCheckBox(sender, e);
+
+            if (isCheck) { 
+
+                if (!cartItems.Any())
+                {
+                    await DisplayAlert("Error", "Your cart is empty.", "OK");
+                    return;
+                }
+
+
+                foreach(var cartItem in cartItems)
+                {
+                    for(int count = 1; count <= cartItem.Quantity; count++) { 
+                        string copyNumber = await _database.GetCopyNumberByISBNAsync(cartItem.BookISBN, count);
+
+                        var reservation = new ReservationsRequest
+                        {
+
+                            user_number = userNumber.Value,
+                            isbn = cartItem.BookISBN,
+                            coupy_number = copyNumber,
+                            type = cartItem.StatusBorR ?? "Read",
+                            reservation_date = DateTime.Now,
+                            reservation_expire_date = DateTime.Now.AddDays(7),
+                            status = "New",
+                            notification_message = "Your reservation is pending approval."
+                        };
+
+                        await _database.SaveReservationAsync(reservation);
+                    }
+                }
+
+                await DisplayAlert("Success", "Books have been reserved.", "OK");
+                CartModel.Clear(); 
+                OnPropertyChanged(nameof(CartModel)); 
+            }
+            else
+            {
+                await DisplayAlert("Error", "You must agree to the terms to reserve books.", "OK");
+            }
+        }
+
+        private async Task<bool> isCheckReservationCheckBox(object sender, EventArgs e)
+        {
+            if (ReservationCheckBox.IsChecked == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private async Task<int?> GetUserIdfromNameAsync()
+        {
+            var loggedUserName = Preferences.Get("LoggedInUserName", string.Empty);
+
+            int? userNumber = await _database.GetUserNumber(loggedUserName);
+
+            return userNumber;
+        }
+
         //Reservations
 
         private void OnBorrowButtonClicked(object sender, EventArgs e)
         {
+           
             if (sender is Button button && button.BindingContext is Books selectedBook)
             {
                 if (UpdateTotalQuantity() < 5) { 
@@ -267,7 +339,7 @@ using System.Threading.Tasks;
             if (books == null || books.Count == 0)
             {
                 await DisplayAlert("Info", "No books found for the selected category.", "OK");
-                BooksCollectionView.ItemsSource = null; // Optionally clear the view
+                BooksCollectionView.ItemsSource = null; 
                 return;
             }
 
@@ -300,6 +372,7 @@ using System.Threading.Tasks;
             }
             OnPropertyChanged(nameof(CartModel));
         }
+       
     }
 
 }
