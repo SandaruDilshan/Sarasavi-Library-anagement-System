@@ -1,5 +1,5 @@
 # Sarasavi Library
-This project was to develop library management system for Sarasavi, This is a desktop application developed using ASP.NET 
+This project was to develop library management system for Sarasavi, This desktop application developed uusing MAUI Cross platform development framework. 
 
 ## Reqirements
 **Project Overview.**
