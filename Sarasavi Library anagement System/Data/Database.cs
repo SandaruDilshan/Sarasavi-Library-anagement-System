@@ -37,6 +37,83 @@ namespace Sarasavi_Library_anagement_System.Data
             }
         }
 
+        //User Noftifications
+
+        //delete notifications 
+        public async Task DeleteNotificationAsync(ReservationsRequest reservation)
+        {
+            try
+            {
+                await _conn.DeleteAsync(reservation);
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"Failed to delete notification: {ex.Message}", "OK");
+            }
+        }
+
+
+        public async Task<List<ReservationsRequest>> GetNotificationsAsync()
+        {
+            return await _conn.Table<ReservationsRequest>().ToListAsync();
+        }
+
+
+        //RservationsRequest
+
+        //delete reservations
+        public async Task DeleteReservationAsync(ReservationsRequest reservation)
+        {
+            await _conn.UpdateAsync(reservation);
+
+            // Check if the status is "Cancelled" and remove it from the database
+            if (reservation.status == "Cancelled")
+            {
+                await DeleteCancelledReservationsAsync();
+            }
+        }
+
+        public async Task DeleteCancelledReservationsAsync()
+        {
+            try
+            {
+                // Delete all reservations where the status is "Cancelled"
+                await _conn.Table<ReservationsRequest>()
+                    .Where(r => r.status == "Cancelled")
+                    .DeleteAsync();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"Failed to delete cancelled reservations: {ex.Message}", "OK");
+            }
+        }
+
+
+        public async Task UpdateReservationAsync(ReservationsRequest reservation)
+        {
+            await _conn.UpdateAsync(reservation);
+        }
+
+        public async Task<List<ReservationsRequest>> GetReturnAsync()
+        {
+            return await _conn.Table<ReservationsRequest>()
+                .Where(b => b.status == "Approved").ToListAsync();
+        }
+
+
+        public async Task<List<ReservationsRequest>> GetPendingReservationsAsync()
+        {
+            return await _conn.Table<ReservationsRequest>()
+                .Where(b => b.status == "Pending").ToListAsync();
+        }
+
+        public async Task<List<ReservationsRequest>> GetReservationsAsync()
+        {
+            return await _conn.Table<ReservationsRequest>()
+                .Where(b => b.status == "New").ToListAsync();
+        } 
+
+
         //Save Cart items
 
         //return copy numbers

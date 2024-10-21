@@ -23,7 +23,7 @@
              />
 
             <Label Text="WELCOME TO THE LIBRARY" TextColor="White" FontSize="14" FontAttributes="Bold" Margin="0,20,0,20"/>
-            <Label Text="USER NUMBER: 00001" TextColor="White" HorizontalOptions="Center"/>
+            <Label Text="USER" TextColor="White" HorizontalOptions="Center"/>
 
         </StackLayout>
     </Shell.FlyoutHeader>

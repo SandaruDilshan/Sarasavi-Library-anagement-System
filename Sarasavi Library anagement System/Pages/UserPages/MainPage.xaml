@@ -243,7 +243,7 @@
                     <Label Text="Agree" FontAttributes="Bold" FontSize="12" TextColor="Red" VerticalOptions="Center"/>
                     <CheckBox x:Name="ReservationCheckBox" />
                 </HorizontalStackLayout>
-                <Button Text="Reserve" Margin="20,0,10,20" Clicked="ReserveBooksAsync"/>
+                <Button Text="Reserve" Margin="20,0,10,20" Clicked="ReserveBooks"/>
             </VerticalStackLayout>
 
         </Grid>

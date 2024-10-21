@@ -9,11 +9,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <!-- For the search and buttons -->
             <RowDefinition Height="Auto" />
-            <!-- For the header row -->
             <RowDefinition Height="*" />
-            <!-- For the CollectionView -->
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -23,7 +20,7 @@
         <!-- Search and Filter Bar -->
         <HorizontalStackLayout Spacing="20" HorizontalOptions="Start" Grid.Row="0" Grid.Column="0" Padding="1" Margin="10,0,0,0">
             <Label Text="All Returns:" FontAttributes="Bold" VerticalOptions="Center"/>
-            <Entry x:Name="SearchAdminBooks" Placeholder="Search" WidthRequest="350" BackgroundColor="White" />
+            <Entry x:Name="SearchAdminBooks" Placeholder="Search" WidthRequest="350" BackgroundColor="White" TextChanged="ReservationsSearch" />
             <Image Source="search.png" HeightRequest="25" VerticalOptions="Center"/>
         </HorizontalStackLayout>
 
@@ -36,23 +33,22 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Label Text="User Number" Grid.Column="0" FontAttributes="Bold" />
-            <Label Text="Copy Number" Grid.Column="1" FontAttributes="Bold" />
-            <Label Text="ISBN" Grid.Column="2" FontAttributes="Bold" />
-            <Label Text="Title" Grid.Column="3" FontAttributes="Bold" />
-            <Label Text="Author" Grid.Column="4" FontAttributes="Bold" />
-            <Label Text="Return Date" Grid.Column="5" FontAttributes="Bold" />
-            <Label Text="Action" Grid.Column="6" FontAttributes="Bold" />
+            <Label Text="ISBN" Grid.Column="1" FontAttributes="Bold" />
+            <Label Text="Status" Grid.Column="2" FontAttributes="Bold" />
+            <Label Text="Copy Number" Grid.Column="3" FontAttributes="Bold" />
+            <Label Text="Return Date" Grid.Column="4" FontAttributes="Bold" />
+            <Label Text="Action" Grid.Column="5" FontAttributes="Bold" />
         </Grid>
 
         <!-- CollectionView for displaying books -->
-        <CollectionView x:Name="AdminBooksCollectionView" 
+        <CollectionView x:Name="AdminReturnCollectionView" 
                     Grid.Row="2"
                     SelectionMode="Single" 
                     EmptyView="No category available"
-                    Margin="10">
+                    Margin="10"
+                    ItemsSource="{Binding Returns}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" Span="1" />
             </CollectionView.ItemsLayout>
@@ -68,16 +64,19 @@
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <!-- Bind each property to its respective column -->
-                            <Label Text="{Binding UserNumber}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding CopyNumber}" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding ISBN}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding Title}" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding Author}" Grid.Column="4" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Text="{Binding ReturnDate}" Grid.Column="5" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Button Text="confirm" />
+                            <Label Text="{Binding user_number}" Grid.Column="0" VerticalOptions="Center"  />
+                            <Label Text="{Binding isbn}" Grid.Column="1" VerticalOptions="Center"  />
+                            <Label Text="{Binding status}" Grid.Column="2" VerticalOptions="Center" />
+                            <Label Text="{Binding coupy_number}" Grid.Column="3" VerticalOptions="Center"  />
+                            <Label Text="{Binding reservation_expire_date}" Grid.Column="4" VerticalOptions="Center"  />
+                            <HorizontalStackLayout Grid.Column="6" Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="Confirm" TextColor="Blue">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnConfirmTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </HorizontalStackLayout>
                         </Grid>
                     </Frame>
                 </DataTemplate>

@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm;
 
     namespace Sarasavi_Library_anagement_System.Pages
     {
@@ -22,7 +23,6 @@ using System.Threading.Tasks;
         public event NotifyCollectionChangedEventHandler CollectionChanged; 
         public ObservableCollection<BooksCatagory> BookCategories { get; set; }
         public ObservableCollection<Books> Books { get; set; }
-        //public ObservableCollection<CartModel> Carts { get; set; } = new (); 
 
         public bool IsCategoryVisible { get; set; } = true;
         public bool IsBookVisible { get; set; } = false;
@@ -44,6 +44,8 @@ using System.Threading.Tasks;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public IRelayCommand ReserveBooksAsyncCommand { get; }
+
 
         public MainPage()
         {
@@ -52,6 +54,7 @@ using System.Threading.Tasks;
             BookCategories = new ObservableCollection<BooksCatagory>();
             Books = new ObservableCollection<Books>();
             CartModel = new ObservableCollection<CartModel>(); // Ensure Carts is initialized
+            ReserveBooksAsyncCommand = new AsyncRelayCommand(ReserveBooksAsync);
 
             BindingContext = this;
 
@@ -59,65 +62,60 @@ using System.Threading.Tasks;
         }
 
         // Method to handle reservation logic
-        //[RelayCommand]
-        private async void ReserveBooksAsync(object sender, EventArgs e)
+        private async void ReserveBooks(object sender, EventArgs e)
+        {
+            if (ReservationCheckBox.IsChecked)
+            {
+                await ReserveBooksAsync();
+            }
+            else
+            {
+                await DisplayAlert("Alert", "Your can not reserve without agree of the conditions", "OK");
+
+            }
+        }
+
+
+        [RelayCommand]
+        private async Task ReserveBooksAsync()
         {
             var cartItems = CartModel.ToList();
             var userNumber = await GetUserIdfromNameAsync();
-            var isCheck = await isCheckReservationCheckBox(sender, e);
 
-            if (isCheck) { 
-
-                if (!cartItems.Any())
-                {
-                    await DisplayAlert("Error", "Your cart is empty.", "OK");
-                    return;
-                }
-
-
-                foreach(var cartItem in cartItems)
-                {
-                    for(int count = 1; count <= cartItem.Quantity; count++) { 
-                        string copyNumber = await _database.GetCopyNumberByISBNAsync(cartItem.BookISBN, count);
-
-                        var reservation = new ReservationsRequest
-                        {
-
-                            user_number = userNumber.Value,
-                            isbn = cartItem.BookISBN,
-                            coupy_number = copyNumber,
-                            type = cartItem.StatusBorR ?? "Read",
-                            reservation_date = DateTime.Now,
-                            reservation_expire_date = DateTime.Now.AddDays(7),
-                            status = "New",
-                            notification_message = "Your reservation is pending approval."
-                        };
-
-                        await _database.SaveReservationAsync(reservation);
-                    }
-                }
-
-                await DisplayAlert("Success", "Books have been reserved.", "OK");
-                CartModel.Clear(); 
-                OnPropertyChanged(nameof(CartModel)); 
-            }
-            else
+            if (!cartItems.Any())
             {
-                await DisplayAlert("Error", "You must agree to the terms to reserve books.", "OK");
+                await DisplayAlert("Error", "Your cart is empty.", "OK");
+                return;
             }
+
+            foreach (var cartItem in cartItems)
+            {
+                for (int count = 1; count <= cartItem.Quantity; count++)
+                {
+                    string copyNumber = await _database.GetCopyNumberByISBNAsync(cartItem.BookISBN, count);
+
+                    var reservation = new ReservationsRequest
+                    {
+                        user_number = userNumber.Value,
+                        isbn = cartItem.BookISBN,
+                        coupy_number = copyNumber,
+                        type = cartItem.StatusBorR ?? "Read",
+                        reservation_date = DateTime.Now,
+                        reservation_expire_date = DateTime.Now.AddDays(7),
+                        status = "New",
+                        notification_message = "Your reservation is pending approval."
+                    };
+
+                    await _database.SaveReservationAsync(reservation);
+                }
+            }
+
+            await DisplayAlert("Success", "Books have been reserved.", "OK");
+            CartModel.Clear();
+            OnPropertyChanged(nameof(CartModel));
         }
 
-        private async Task<bool> isCheckReservationCheckBox(object sender, EventArgs e)
-        {
-            if (ReservationCheckBox.IsChecked == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
 
         private async Task<int?> GetUserIdfromNameAsync()
         {
